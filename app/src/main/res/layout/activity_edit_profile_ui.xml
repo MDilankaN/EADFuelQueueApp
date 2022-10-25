@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background_auth"
-    tools:context=".LoginUI">
+    tools:context=".EditProfileUI">
 
     <ImageView
         android:id="@+id/imageView2"
@@ -16,7 +16,8 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/main_logo_white" />
+        android:src="@drawable/profile_box" />
+
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -33,36 +34,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-        <TextView
-            android:id="@+id/login_welcome_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/light_cream"
-            android:fontFamily="@font/raleway_regular"
-            android:text="Welcome to Fuel Queue"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@color/purple"
-            android:textFontWeight="600"
-            tools:layout_editor_absoluteX="90dp"
-            tools:layout_editor_absoluteY="279dp" />
-
-        <TextView
-            android:id="@+id/login_welcome_msg"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@color/light_cream"
-            android:fontFamily="@font/raleway_regular"
-            android:text="Makes your waiting time worth it"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/purple"
-            android:textFontWeight="600"
-            tools:layout_editor_absoluteX="90dp"
-            tools:layout_editor_absoluteY="279dp" />
-
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:gravity="center"
             android:orientation="vertical">
 
@@ -71,76 +45,103 @@
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:inputType="textPersonName"
                 android:hint="Enter Username Here"
-                android:textColorHint="@color/cream"
+                android:inputType="textPersonName"
                 android:text=""
                 android:textSize="15dp"
                 android:fontFamily="@font/raleway_regular"
                 android:textColor="@color/purple"
+                android:textColorHint="@color/cream"
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/email"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:ems="10"
-                android:inputType="textPassword"
-                android:hint="Enter Password Here"
-                android:textColorHint="@color/cream"
+                android:hint="Enter Email Here"
+                android:inputType="textPersonName"
                 android:text=""
                 android:textSize="15dp"
                 android:fontFamily="@font/raleway_regular"
+                android:textColor="@color/purple"
+                android:textColorHint="@color/cream"
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
-            <TextView
-                android:id="@+id/forgot_pwd"
+            <EditText
+                android:id="@+id/vehicle_no"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/light_cream"
+                android:ems="10"
+                android:hint="Enter Vehicle No"
+                android:inputType="textPersonName"
+                android:text=""
+                android:textSize="15dp"
                 android:fontFamily="@font/raleway_regular"
-                android:text="Forgot Password ?"
-                android:onClick="onClick"
-                android:clickable="true"
-                android:textAlignment="textEnd"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
                 android:textColor="@color/purple"
-                android:textFontWeight="700"
-                tools:layout_editor_absoluteX="90dp"
-                tools:layout_editor_absoluteY="279dp" />
+                android:textColorHint="@color/cream"
+                tools:layout_editor_absoluteX="83dp"
+                tools:layout_editor_absoluteY="402dp" />
 
             <Button
-                android:id="@+id/login_btn"
+                android:id="@+id/update_btn"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:background="@color/purple"
-                android:text="Login"
+                android:text="Update"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/bottomPart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:textAlignment="center"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/change_password_btn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:background="@color/cream"
+                android:text="Change Password"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/delete_account_btn"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/cream"
+                android:text="Delete my account"
                 android:textColor="@color/white" />
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/regiter_link"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@color/light_cream"
-            android:fontFamily="@font/raleway_regular"
-            android:text="Don’t Have An Account ? Sign Up "
-            android:onClick="onClick"
-            android:clickable="true"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
-            android:textColor="@color/purple"
-            android:textFontWeight="700"
-            tools:layout_editor_absoluteX="90dp"
-            tools:layout_editor_absoluteY="279dp" />
-
     </LinearLayout>
+
 
 
     <TextView
@@ -156,5 +157,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         app:layout_constraintVertical_bias="0.868" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
