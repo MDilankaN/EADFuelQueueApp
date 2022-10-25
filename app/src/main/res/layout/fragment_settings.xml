@@ -1,15 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SettingsFragment"
     android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Settings" />
+    <LinearLayout
+        android:layout_width="409dp"
+        android:layout_height="729dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="1dp"
+        android:paddingHorizontal="20dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:textSize="22dp"
+            android:fontFamily="@font/raleway_bold"
+            android:textColor="@color/purple"
+            android:text="Settings" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/raleway_regular"
+            android:textColor="@color/purple"
+            android:text="Configurations" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Language"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="85dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Theme"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="85dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/raleway_regular"
+            android:textColor="@color/purple"
+            android:text="Manage" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:id="@+id/profile_btn"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="85dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Station"
+            android:id="@+id/station_btn"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="85dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Staff"
+            android:id="@+id/staff_btn"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="85dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="18dp"
+            android:fontFamily="@font/raleway_regular"
+            android:textColor="@color/purple"
+            android:text="Help" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contact Us"
+            android:id="@+id/contact_us_btn"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="85dp" />
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Privacy and Policy"
+            android:id="@+id/policy_btn"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="85dp" />
+
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
