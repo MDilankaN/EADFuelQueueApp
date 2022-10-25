@@ -22,14 +22,14 @@ public class StationCrudUI extends AppCompatActivity {
         add_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openNewActivity();
             }
         });
 
         update_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openNewActivity2();
             }
         });
 
