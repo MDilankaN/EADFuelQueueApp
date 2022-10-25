@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".StaffCrudUI">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp"
+            android:textAlignment="textStart"
+            tools:ignore="RtlCompat">
+
+            <TextView
+                android:id="@+id/staffText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Staff"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/purple"
+                android:textFontWeight="900"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="279dp"
+                android:layout_marginBottom="20dp"/>
+
+            <LinearLayout
+                android:id="@+id/searchFuelStation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:background="@color/light_cream"
+                android:orientation="vertical"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="20dp"
+                android:textAlignment="textStart"
+                tools:ignore="RtlCompat">
+
+                <TextView
+                    android:id="@+id/login_welcome_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/raleway_regular"
+                    android:text="Search and Select Fuel Station"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textColor="@color/purple"
+                    android:textFontWeight="900"
+                    android:textStyle="bold"
+                    tools:layout_editor_absoluteX="90dp"
+                    tools:layout_editor_absoluteY="279dp" />
+
+                <EditText
+                    android:id="@+id/fuelStationField"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:hint="Search Here..."
+                    android:inputType="textPersonName"
+                    android:text=""
+                    android:textSize="15dp"
+                    android:fontFamily="@font/raleway_regular"
+                    android:textColor="@color/purple"
+                    android:textColorHint="@color/cream"
+                    tools:layout_editor_absoluteX="83dp"
+                    tools:layout_editor_absoluteY="402dp" />
+
+                <Button
+                    android:id="@+id/searchStationBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@color/purple"
+                    android:gravity="center"
+                    android:text="Search Station"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/searchResultBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:orientation="horizontal"
+                android:background="@color/cream"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="20dp"
+                android:textAlignment="textStart"
+                tools:ignore="RtlCompat">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="2"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:src="@drawable/gas_pump" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <TextView
+                        android:text="No fuel stations selected"
+                        android:textColor="@color/white"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/raleway_medium"
+                        android:textFontWeight="700"
+                        android:textAlignment="textStart"
+                        android:textSize="22sp"/>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/manageText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Manage Staff"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/purple"
+                android:textFontWeight="900"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="279dp"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/addStaffBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple"
+                android:gravity="center"
+                android:text="Add Staff"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:id="@+id/updateStaffBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple"
+                android:gravity="center"
+                android:text="Update Staff"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:id="@+id/removeStaffBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/purple"
+                android:gravity="center"
+                android:text="Remove Staff"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp" />
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
