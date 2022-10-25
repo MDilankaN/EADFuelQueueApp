@@ -40,11 +40,11 @@
             android:orientation="vertical">
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/station_name"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter Username Here"
+                android:hint="Station Name"
                 android:inputType="textPersonName"
                 android:text=""
                 android:textSize="15dp"
@@ -55,11 +55,11 @@
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/station_tel"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter Email Here"
+                android:hint="Station Tel No"
                 android:inputType="textPersonName"
                 android:text=""
                 android:textSize="15dp"
@@ -70,11 +70,11 @@
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/employee_no"
+                android:id="@+id/station_address1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter Employee No"
+                android:hint="Address Line 1"
                 android:inputType="textPersonName"
                 android:text=""
                 android:textSize="15dp"
@@ -85,11 +85,11 @@
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/station_address2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Enter Password"
+                android:hint="Address Line 2"
                 android:inputType="textPersonName"
                 android:text=""
                 android:textSize="15dp"
@@ -99,20 +99,7 @@
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
-            <EditText
-                android:id="@+id/confirmation_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="Re-Enter Password"
-                android:inputType="textPersonName"
-                android:text=""
-                android:textSize="15dp"
-                android:fontFamily="@font/raleway_regular"
-                android:textColor="@color/purple"
-                android:textColorHint="@color/cream"
-                tools:layout_editor_absoluteX="83dp"
-                tools:layout_editor_absoluteY="402dp" />
+
 
             <LinearLayout
                 android:id="@+id/add_Staff_layout"
@@ -129,11 +116,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
                 <Button
-                    android:id="@+id/add_Staff_btn"
+                    android:id="@+id/add_station_btn"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:background="@color/cream"
-                    android:text="Add Staff"
+                    android:text="Add Station"
                     android:textColor="@color/white" />
 
             </LinearLayout>
