@@ -2,6 +2,7 @@ package com.example.myapplication.database;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -61,6 +62,32 @@ public class DBHandler extends SQLiteOpenHelper {
         db.insert(USER_TABLE, null, values);
         db.close();
 
+    }
+
+    public User getUserData(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursorUser = db.rawQuery("SELECT * FROM " + USER_TABLE, null);
+        User userObj = null;
+        if(cursorUser.moveToFirst()){
+            do{
+                userObj = new User(cursorUser.getString(0),
+                        cursorUser.getString(1),
+                        cursorUser.getString(7),
+                        cursorUser.getString(2),
+                        cursorUser.getString(6),
+                        cursorUser.getString(5),
+                        cursorUser.getString(4),
+                        cursorUser.getString(3),
+                        cursorUser.getString(8));
+            } while (cursorUser.moveToNext());
+        }
+
+        return userObj;
+    }
+
+    public  void logOutDB(){
+        SQLiteDatabase db = this.getReadableDatabase();
+        db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
     }
 
     @Override

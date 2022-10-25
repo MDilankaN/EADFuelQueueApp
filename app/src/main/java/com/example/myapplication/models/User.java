@@ -70,4 +70,16 @@ public class User {
         Language = language;
         Type = type;
     }
+
+    public User(String id, String userName, String email, String password, String vehicleNo, String vehicleType, String fuelType, String language, String type) {
+        Id = id;
+        UserName = userName;
+        Email = email;
+        Password = password;
+        VehicleNo = vehicleNo;
+        VehicleType = vehicleType;
+        FuelType = fuelType;
+        Language = language;
+        Type = type;
+    }
 }
