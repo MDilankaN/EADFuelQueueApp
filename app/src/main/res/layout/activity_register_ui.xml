@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:background="@color/light_cream"
         android:gravity="center"
@@ -60,7 +60,7 @@
             tools:layout_editor_absoluteY="279dp" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:gravity="center"
@@ -69,31 +69,32 @@
 
             <EditText
                 android:id="@+id/username"
-                android:layout_width="250dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Enter Username Here"
                 android:inputType="textPersonName"
+                android:minHeight="48dp"
                 android:text=""
-                android:textSize="15dp"
-                android:fontFamily="@font/raleway_regular"
                 android:textColor="@color/purple"
                 android:textColorHint="@color/cream"
+                android:textSize="15dp"
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
                 android:id="@+id/email"
-                android:layout_width="250dp"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Enter Email Here"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textSize="15dp"
-                android:fontFamily="@font/raleway_regular"
                 android:textColor="@color/purple"
                 android:textColorHint="@color/cream"
+                android:textSize="15dp"
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
@@ -102,13 +103,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Enter Vehicle No"
                 android:inputType="textPersonName"
+                android:minHeight="48dp"
                 android:text=""
-                android:textSize="15dp"
-                android:fontFamily="@font/raleway_regular"
                 android:textColor="@color/purple"
                 android:textColorHint="@color/cream"
+                android:textSize="15dp"
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
@@ -117,13 +119,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Enter Password"
                 android:inputType="textPersonName"
                 android:text=""
-                android:textSize="15dp"
-                android:fontFamily="@font/raleway_regular"
                 android:textColor="@color/purple"
                 android:textColorHint="@color/cream"
+                android:textSize="15dp"
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
@@ -132,13 +134,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:fontFamily="@font/raleway_regular"
                 android:hint="Re-Enter Password"
                 android:inputType="textPersonName"
+                android:minHeight="48dp"
                 android:text=""
-                android:textSize="15dp"
-                android:fontFamily="@font/raleway_regular"
                 android:textColor="@color/purple"
                 android:textColorHint="@color/cream"
+                android:textSize="15dp"
                 tools:layout_editor_absoluteX="83dp"
                 tools:layout_editor_absoluteY="402dp" />
 
@@ -159,10 +162,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@color/light_cream"
-            android:fontFamily="@font/raleway_regular"
-            android:text="Have an account? Log in"
-            android:onClick="onClick"
             android:clickable="true"
+            android:fontFamily="@font/raleway_regular"
+            android:onClick="onClick"
+            android:text="Have an account? Log in"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Small"
             android:textColor="@color/purple"
