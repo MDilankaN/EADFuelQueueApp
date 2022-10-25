@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PrivacyAndPolicy">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="#FBE4CE"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/text_privacy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="216dp"
+            android:textAlignment="center"
+            android:text="Cooperation with us has a number of advantages, including legal support of turn-key FinTech programs. You are the generator of the idea, while we are the guarantee of its implementation in the legal arena.
+            Experienced professionals team can help clients to obtain licenses for financial or payment institutions. The services of our company for obtaining FinTech licenses have already been used by more than 80 clients who have
+            already obtained licenses and are carrying out their activities successfully.This is an official permission for the operation of payment organizations, EMIs and banks, the right to use digital currency in European and other
+            countries.We base on the full-support strategies for turn-key FinTech projects. It includes the floating of a company, complex legal support, creation of software for financial institutions and before the start of the project,
+            including further legal support of the project.In addition, we provide an opportunity to buy ready-made companies with FinTech licenses. You can follow the current offers in our telegram channel.The specialists of our company
+            are ready to deal with the licensing issues, consultations on taxation, preparation of agreements, AML and KYC procedures, drafting of a business plan, recruitment of employees, filing reports and audit, and software development.
+            Contact a specialist of our company for detailed advice.Cooperation with us has a number of advantages, including legal support of turn-key FinTech programs. You are the generator of the idea, while we are the guarantee of its
+            implementation in the legal arena.Experienced professionals team can help clients to obtain licenses for financial or payment institutions. The services of our company for obtaining FinTech licenses have already been used by more than
+            80 clients who have already obtained licenses and are carrying out their activities successfully.This is an official permission for the operation of payment organizations, EMIs and banks, the right to use digital currency in European
+            and other countries.We base on the full-support strategies for turn-key FinTech projects. It includes the floating of a company, complex legal support, creation of software for financial institutions and before the start of the project,
+            including further legal support of the project.In addition, we provide an opportunity to buy ready-made companies with FinTech licenses. You can follow the current offers in our telegram channel.The specialists of our company are ready
+            to deal with the licensing issues, consultations on taxation, preparation of agreements, AML and KYC procedures, drafting of a business plan, recruitment of employees, filing reports and audit, and software development. Contact a specialist
+            of our company for detailed advice.Cooperation with us has a number of advantages, including legal support of turn-key FinTech programs. You are the generator of the idea, while we are the guarantee of its implementation in the legal arena.
+            Experienced professionals team can help clients to obtain licenses for financial or payment institutions. The services of our company for obtaining FinTech licenses have already been used by more than 80 clients who have already obtained licenses
+            and are carrying out their activities successfully.This is an official permission for the operation of payment organizations, EMIs and banks, the right to use digital currency in European and other countries.We base on the full-support strategies
+            for turn-key FinTech projects. It includes the floating of a company, complex legal support, creation of software for financial institutions and before the start of the project, including further legal support of the project.In addition, we provide
+            an opportunity to buy ready-made companies with FinTech licenses. You can follow the current offers in our telegram channel.The specialists of our company are ready to deal with the licensing issues, consultations on taxation, preparation of agreements,
+            AML and KYC procedures, drafting of a business plan, recruitment of employees, filing reports and audit, and software development. Contact a specialist of our company for detailed advice."
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/policy_header"
+            app:layout_constraintVertical_bias="1.0" />
+
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
