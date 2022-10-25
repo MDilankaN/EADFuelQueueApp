@@ -1,15 +1,26 @@
 package com.example.myapplication.models;
 
+import com.google.gson.annotations.SerializedName;
+
 public class User {
 
+    @SerializedName("id")
     private String Id = "";
+    @SerializedName("userName")
     private String UserName;
+    @SerializedName("email")
     private String Email;
+    @SerializedName("password")
     private String Password;
+    @SerializedName("vehicleNo")
     private String VehicleNo;
+    @SerializedName("vehicleType")
     private String VehicleType;
+    @SerializedName("fuelType")
     private String FuelType;
+    @SerializedName("language")
     private String Language;
+    @SerializedName("type")
     private String Type;
 
 

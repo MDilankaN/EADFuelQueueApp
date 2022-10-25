@@ -19,6 +19,8 @@ import com.example.myapplication.models.User;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Register2UI extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -62,6 +64,8 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
         RegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
                 registerUser(username, email, password, vehicleNo, "", "", "", "admin");
 //                Intent intent =  new Intent(Register2UI.this, HomeUI.class);
 //                startActivity(intent);
