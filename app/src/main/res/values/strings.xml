@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Fuel Queue</string>
+    <string name="search_btn">Search for fuel station</string>
 </resources>
