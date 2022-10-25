@@ -53,11 +53,9 @@ public class LoginUI extends AppCompatActivity {
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
 
                     jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
-                    getUserAll();
-//                    getUserLogin(usernameVal);
+                    getUserLogin(usernameVal);
 
-                    Intent intent = new Intent(LoginUI.this, HomeUI.class);
-                    startActivity(intent);
+
                 } else{
                     Toast.makeText(LoginUI.this, "Fields are empty", Toast.LENGTH_LONG).show();
                 }
@@ -84,55 +82,63 @@ public class LoginUI extends AppCompatActivity {
     private void getUserLogin(String un) {
         System.out.println(un);
         System.out.println("-------------------------");
-        Call<List<User>> call = jsonPlaceHolderAPI.getUserByID(un);
-        call.enqueue(new Callback<List<User>>() {
+        Call<User> call = jsonPlaceHolderAPI.getUserByID(un);
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(LoginUI.this, "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(LoginUI.this, "Username or Password Incorrect", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                List<User> user = response.body();
-                System.out.println(user);
+                User user = (User) response.body();
+                Toast.makeText(LoginUI.this, "Logged In", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(LoginUI.this, HomeUI.class);
+                startActivity(intent);
+
             }
 
             @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 System.out.println(t);
                 Toast.makeText(LoginUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
             }
+
+
+
         });
     }
 
-    private void getUserAll() {
-        Call<List<User>> call = jsonPlaceHolderAPI.getUsers();
-        call.enqueue(new Callback<List<User>>() {
-            @Override
-            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
-                if (!response.isSuccessful()) {
-                    Toast.makeText(LoginUI.this, "Error" + response.code(), Toast.LENGTH_LONG).show();
-                    return;
-                }
 
-                List<User> user = response.body();
-                Toast.makeText(LoginUI.this, "called " +response.code(), Toast.LENGTH_LONG).show();
-                for( User userx :user){
-                    System.out.println(userx.getId());
-                    System.out.println(userx.getEmail());
-                    System.out.println(userx.getUserName());
-                    System.out.println(userx.getFuelType());
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<List<User>> call, Throwable t) {
-                System.out.println(t);
-                Toast.makeText(LoginUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+    //Get-ALL Method
+//    private void getUserAll() {
+//        Call<List<User>> call = jsonPlaceHolderAPI.getUsers();
+//        call.enqueue(new Callback<List<User>>() {
+//            @Override
+//            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+//                if (!response.isSuccessful()) {
+//                    Toast.makeText(LoginUI.this, "Error" + response.code(), Toast.LENGTH_LONG).show();
+//                    return;
+//                }
+//
+//                List<User> user = response.body();
+//                Toast.makeText(LoginUI.this, "called " +response.code(), Toast.LENGTH_LONG).show();
+//                for( User userx :user){
+//                    System.out.println(userx.getId());
+//                    System.out.println(userx.getEmail());
+//                    System.out.println(userx.getUserName());
+//                    System.out.println(userx.getFuelType());
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<User>> call, Throwable t) {
+//                System.out.println(t);
+//                Toast.makeText(LoginUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
 
 }

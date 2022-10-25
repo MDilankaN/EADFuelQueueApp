@@ -16,7 +16,7 @@ public interface JasonPlaceHolderAPI {
     Call<List<User>> getUsers();
 
     @GET("/api/User/GetUserByName/{username}")
-    Call<List<User>> getUserByID(@Path("username") String username);
+    Call<User> getUserByID(@Path("username") String username);
 
     @POST("/api/User")
     Call<User>createUser(@Body User user);
