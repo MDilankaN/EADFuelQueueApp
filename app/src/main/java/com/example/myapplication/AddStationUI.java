@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
@@ -15,18 +15,20 @@ import java.util.TimeZone;
 
 public class AddStationUI extends AppCompatActivity {
 
-    private ImageButton btnOpenTime, btnCloseTime;
     private TextView TimeTextView1, TimeTextView2;
+    private  Button addStation, btnOpenTime, btnCloseTime;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_station_ui);
 
-        btnOpenTime = findViewById(R.id.btn_opening_time);
-        btnCloseTime = findViewById(R.id.btn_closing_time);
+        btnOpenTime = findViewById(R.id.btn_openTime);
+        btnCloseTime = findViewById(R.id.btn_closeTime);
 
         TimeTextView1 = findViewById(R.id.textView_open_time);
         TimeTextView2 = findViewById(R.id.textView_closing_time);
+
+        addStation =  findViewById(R.id.add_station_btn);
 
         //https://youtu.be/suMdH7WSewg
         btnOpenTime.setOnClickListener(new View.OnClickListener() {
