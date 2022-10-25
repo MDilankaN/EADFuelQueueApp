@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent( MainActivity.this, UpdateStationUI.class));
+                startActivity(new Intent( MainActivity.this, EditProfileUI.class));
             }
         }, 2000);
     }

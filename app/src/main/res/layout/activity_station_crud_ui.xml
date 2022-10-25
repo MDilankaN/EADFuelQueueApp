@@ -26,23 +26,23 @@
                 android:id="@+id/manageText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
                 android:background="@color/white"
                 android:fontFamily="@font/raleway_bold"
-                android:text="Manage Staff"
+                android:text="Manage Station"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/purple"
                 android:textFontWeight="900"
                 android:textStyle="bold"
                 tools:layout_editor_absoluteX="90dp"
-                tools:layout_editor_absoluteY="279dp"
-                android:layout_marginBottom="20dp"/>
+                tools:layout_editor_absoluteY="279dp" />
 
             <Button
-                android:id="@+id/addStaffBtn"
+                android:id="@+id/btn_addstation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Add Staff"
+                android:text="Add Station"
                 android:textColor="@color/white"
                 android:layout_marginBottom="50dp" />
 
@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/raleway_regular"
-                    android:text="Search Staff"
+                    android:text="Search for Fuel Station"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/purple"
                     android:textFontWeight="900"
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Search Staff"
+                    android:text="Search Station"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -121,7 +121,7 @@
                         android:id="@+id/imageView2"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
-                        android:src="@drawable/staff" />
+                        android:src="@drawable/gas_pump" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -131,7 +131,7 @@
                     android:gravity="center">
 
                     <TextView
-                        android:text="No staffs found"
+                        android:text="No fuel stations found"
                         android:textColor="@color/white"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -146,20 +146,20 @@
             </LinearLayout>
 
             <Button
-                android:id="@+id/updateStaffBtn"
+                android:id="@+id/btn_updatestation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Update Staff"
+                android:text="Update Station"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
 
             <Button
-                android:id="@+id/removeStaffBtn"
+                android:id="@+id/btn_removestation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Remove Staff"
+                android:text="Remove Station"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
 

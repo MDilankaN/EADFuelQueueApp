@@ -2,14 +2,15 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 
@@ -17,9 +18,10 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
-public class UpdateStationUI extends AppCompatActivity {
+public class AddStationUI extends AppCompatActivity {
+
     private TextView TimeTextView1, TimeTextView2;
-    private Button updateStation, btnOpenTime, btnCloseTime;
+    private Button addStation, btnOpenTime, btnCloseTime;
 
     EditText stationName, stationTel, stationAddress1, stationAddress2;
 
@@ -28,8 +30,7 @@ public class UpdateStationUI extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_station_ui);
-
+        setContentView(R.layout.activity_add_station_ui);
 
         btnOpenTime = findViewById(R.id.btn_openTime);
         btnCloseTime = findViewById(R.id.btn_closeTime);
@@ -37,14 +38,14 @@ public class UpdateStationUI extends AppCompatActivity {
         TimeTextView1 = findViewById(R.id.textView_open_time);
         TimeTextView2 = findViewById(R.id.textView_closing_time);
 
-        stationName = findViewById(R.id.update_station_name);
-        stationTel = findViewById(R.id.update_station_tel);
-        stationAddress1 = findViewById(R.id.update_station_address1);
-        stationAddress2 = findViewById(R.id.update_station_address2);
+        stationName = findViewById(R.id.station_name);
+        stationTel = findViewById(R.id.station_tel);
+        stationAddress1 = findViewById(R.id.station_address1);
+        stationAddress2 = findViewById(R.id.station_address2);
 
-        updateStation = findViewById(R.id.update_station_btn);
+        addStation = findViewById(R.id.add_station_btn);
 
-        updateStation.setOnClickListener(new View.OnClickListener() {
+        addStation.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -58,7 +59,7 @@ public class UpdateStationUI extends AppCompatActivity {
 
                 if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("") && !stationAddress2Val.equals("")
                         && !TimeTextView1.equals("") && !TimeTextView2.equals("")) {
-                    updateStation(stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime);
+                    addStation(stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime);
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
                 }
@@ -72,7 +73,7 @@ public class UpdateStationUI extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 int mins = calendar.get(Calendar.MINUTE);
-                TimePickerDialog timePickerDialog = new TimePickerDialog(UpdateStationUI.this, androidx.appcompat.R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddStationUI.this, androidx.appcompat.R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         Calendar c = Calendar.getInstance();
@@ -94,7 +95,7 @@ public class UpdateStationUI extends AppCompatActivity {
                 Calendar calendar = Calendar.getInstance();
                 int hours = calendar.get(Calendar.HOUR_OF_DAY);
                 int mins = calendar.get(Calendar.MINUTE);
-                TimePickerDialog timePickerDialog = new TimePickerDialog(UpdateStationUI.this, androidx.appcompat.R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(AddStationUI.this, androidx.appcompat.R.style.Theme_AppCompat_Dialog, new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         Calendar c = Calendar.getInstance();
@@ -109,9 +110,11 @@ public class UpdateStationUI extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
+
+
     }
 
-    public void updateStation(String stationName, String stationTelNo, String stationAddress1, String stationAddress2, String openingTime, String closingTime) {
+    public void addStation(String stationName, String stationTelNo, String stationAddress1, String stationAddress2, String openingTime, String closingTime) {
 
         System.out.println(stationName);
         System.out.println(stationTelNo);
