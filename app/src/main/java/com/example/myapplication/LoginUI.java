@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.api.JasonPlaceHolderAPI;
+import com.example.myapplication.database.DBHandler;
 import com.example.myapplication.models.User;
 
 import java.util.List;
@@ -30,6 +31,8 @@ public class LoginUI extends AppCompatActivity {
 
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
+    DBHandler dbHandler;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,8 @@ public class LoginUI extends AppCompatActivity {
 
         username = findViewById(R.id.username_login);
         password = findViewById(R.id.password_login);
+
+        dbHandler = new DBHandler(LoginUI.this);
 
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,6 +97,8 @@ public class LoginUI extends AppCompatActivity {
                 }
 
                 User user = (User) response.body();
+                dbHandler.addUserToDB(user);
+
                 Toast.makeText(LoginUI.this, "Logged In", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginUI.this, HomeUI.class);
                 startActivity(intent);
