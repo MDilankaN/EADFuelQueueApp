@@ -26,7 +26,7 @@ public class LoginUI extends AppCompatActivity {
         LoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =  new Intent(LoginUI.this, HomeUI.class);
+                Intent intent =  new Intent(LoginUI.this, AddStationUI.class);
                 startActivity(intent);
             }
         });
