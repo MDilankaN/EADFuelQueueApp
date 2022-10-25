@@ -4,6 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".StationCrudUI">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="left"
+        android:orientation="vertical"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="20dp"
+        android:textAlignment="textStart"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.002"
+        tools:ignore="RtlCompat"
+        tools:layout_editor_absoluteX="30dp">
+
+        <TextView
+            android:id="@+id/manageText_station"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:background="@color/white"
+            android:fontFamily="@font/raleway_bold"
+            android:text="Manage Staff"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="@color/purple"
+            android:textFontWeight="900"
+            android:textStyle="bold"
+            tools:layout_editor_absoluteX="90dp"
+            tools:layout_editor_absoluteY="279dp" />
+
+        <Button
+            android:id="@+id/btn_addstation"
+            android:layout_width="wrap_content"
+            android:layout_height="82dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_add_station"
+            android:gravity="center"
+            android:text="" />
+
+        <Button
+            android:id="@+id/btn_updatestation"
+            android:layout_width="wrap_content"
+            android:layout_height="81dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_update_station"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/white" />
+
+        <Button
+            android:id="@+id/btn_removestation"
+            android:layout_width="wrap_content"
+            android:layout_height="78dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/btn_remove_station"
+            android:gravity="center"
+            android:text=""
+            android:textColor="@color/white" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
