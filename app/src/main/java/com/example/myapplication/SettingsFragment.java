@@ -57,7 +57,7 @@ public class SettingsFragment extends Fragment {
         }
     }
 
-    Button Profile, Station, Staff, ContactUs, Privacy;
+    Button Profile, Station, Staff, Queue, ContactUs, Privacy;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -69,6 +69,7 @@ public class SettingsFragment extends Fragment {
         Profile = view.findViewById(R.id.profile_btn);
         Station = view.findViewById(R.id.station_btn);
         Staff = view.findViewById(R.id.staff_btn);
+        Queue = view.findViewById(R.id.queue_btn);
         ContactUs = view.findViewById(R.id.contact_us_btn);
         Privacy = view.findViewById(R.id.policy_btn);
 
@@ -92,6 +93,14 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), StaffCrudUI.class);
+                startActivity(i);
+            }
+        });
+
+        Queue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), QueueCrudUI.class);
                 startActivity(i);
             }
         });
