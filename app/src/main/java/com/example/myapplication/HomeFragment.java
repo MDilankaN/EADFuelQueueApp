@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -63,17 +64,20 @@ public class HomeFragment extends Fragment {
 
     Button search, searchNear;
     String username;
+    Context thiscontext;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        thiscontext = container.getContext();
+        dbHandler = new DBHandler(thiscontext);
         if(getArguments() != null){
             username = getArguments().getString("username");
             System.out.println(username);
-
+            User user = dbHandler.getUserData(username);
+            System.out.println(user.getUserName());
         }
 
 
