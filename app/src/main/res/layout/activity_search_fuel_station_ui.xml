@@ -90,59 +90,17 @@
                 android:textAlignment="textStart"
                 tools:ignore="RtlCompat">
 
-                <LinearLayout
+                <TextView
+                    android:id="@+id/stationDetails"
+                    android:text="IOC Filling Station"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="left">
-
-                    <LinearLayout
-                        android:id="@+id/stationDetails"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="left"
-                        android:orientation="vertical"
-                        android:background="@color/cream"
-                        android:textAlignment="textStart"
-                        tools:ignore="RtlCompat">
-
-                        <TextView
-                            android:text="IOC Filling Station"
-                            android:textColor="@color/white"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:fontFamily="@font/raleway_medium"
-                            android:textFontWeight="700"
-                            android:textAlignment="textStart"
-                            android:textSize="26sp"/>
-
-                        <TextView
-                            android:text="No 11, Marine Drive, Colombo 06"
-                            android:textColor="@color/white"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:fontFamily="@font/raleway_medium"
-                            android:textFontWeight="700"
-                            android:textAlignment="textStart"
-                            android:textSize="21sp"/>
-
-                        <TextView
-                            android:text="Opens at 7AM"
-                            android:textColor="@color/white"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:fontFamily="@font/raleway_medium"
-                            android:textFontWeight="700"
-                            android:textAlignment="textStart"
-                            android:textSize="15sp"/>
-
-
-                    </LinearLayout>
-
-                </LinearLayout>
+                    android:gravity="center"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textFontWeight="700"
+                    android:textAlignment="textStart"
+                    android:textSize="20dp"/>
 
             </LinearLayout>
 
