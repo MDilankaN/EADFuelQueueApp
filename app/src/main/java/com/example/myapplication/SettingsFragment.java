@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,10 +57,70 @@ public class SettingsFragment extends Fragment {
         }
     }
 
+    Button Profile, Station, Staff, Queue, ContactUs, Privacy;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_settings, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+
+        Profile = view.findViewById(R.id.profile_btn);
+        Station = view.findViewById(R.id.station_btn);
+        Staff = view.findViewById(R.id.staff_btn);
+        Queue = view.findViewById(R.id.queue_btn);
+        ContactUs = view.findViewById(R.id.contact_us_btn);
+        Privacy = view.findViewById(R.id.policy_btn);
+
+        Profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), EditProfileUI.class);
+                startActivity(i);
+            }
+        });
+
+        Station.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), StationCrudUI.class);
+                startActivity(i);
+            }
+        });
+
+        Staff.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), StaffCrudUI.class);
+                startActivity(i);
+            }
+        });
+
+        Queue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), QueueCrudUI.class);
+                startActivity(i);
+            }
+        });
+
+        ContactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), ContactUs.class);
+                startActivity(i);
+            }
+        });
+
+        Privacy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), PrivacyAndPolicy.class);
+                startActivity(i);
+            }
+        });
+
+        return view;
     }
 }
