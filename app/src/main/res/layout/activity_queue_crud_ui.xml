@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".StaffCrudUI">
+    tools:context=".QueueCrudUI">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
@@ -29,7 +29,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/white"
                 android:fontFamily="@font/raleway_bold"
-                android:text="Manage Station"
+                android:text="Manage Queue"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/purple"
                 android:textFontWeight="900"
@@ -38,11 +38,11 @@
                 tools:layout_editor_absoluteY="279dp" />
 
             <Button
-                android:id="@+id/btn_addstation"
+                android:id="@+id/btn_addqueue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Add Station"
+                android:text="Add Queue"
                 android:textColor="@color/white"
                 android:layout_marginBottom="50dp" />
 
@@ -63,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/raleway_regular"
-                    android:text="Search for Fuel Station"
+                    android:text="Search for Queue"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="@color/purple"
                     android:textFontWeight="900"
@@ -72,7 +72,7 @@
                     tools:layout_editor_absoluteY="279dp" />
 
                 <EditText
-                    android:id="@+id/fuelStationField"
+                    android:id="@+id/fuelQueueField"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:gravity="center"
-                    android:text="Search Station"
+                    android:text="Search Queue"
                     android:textColor="@color/white" />
 
             </LinearLayout>
@@ -111,55 +111,34 @@
                 android:textAlignment="textStart"
                 tools:ignore="RtlCompat">
 
-                <LinearLayout
+                <TextView
+                    android:text="No fuel queue found"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_weight="2"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/gas_pump" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_weight="1"
-                    android:gravity="center">
-
-                    <TextView
-                        android:text="No fuel stations found"
-                        android:textColor="@color/white"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textFontWeight="700"
-                        android:textAlignment="textStart"
-                        android:textSize="22sp"/>
-
-                </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    android:textSize="22sp"/>
 
             </LinearLayout>
 
             <Button
-                android:id="@+id/btn_updatestation"
+                android:id="@+id/btn_updatequeue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Update Station"
+                android:text="Update Queue"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
 
             <Button
-                android:id="@+id/btn_removestation"
+                android:id="@+id/btn_removequeue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Remove Station"
+                android:text="Remove Queue"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
 
