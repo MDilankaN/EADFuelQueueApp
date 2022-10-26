@@ -97,10 +97,12 @@ public class LoginUI extends AppCompatActivity {
                 }
 
                 User user = (User) response.body();
-                dbHandler.addUserToDB(user);
+
+               dbHandler.addUserToDB(user);
 
                 Toast.makeText(LoginUI.this, "Logged In", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginUI.this, HomeUI.class);
+                intent.putExtra("username", user.getUserName());
                 startActivity(intent);
 
             }

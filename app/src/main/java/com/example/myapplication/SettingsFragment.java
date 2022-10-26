@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -9,6 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.example.myapplication.database.DBHandler;
+import com.example.myapplication.models.User;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -58,12 +62,18 @@ public class SettingsFragment extends Fragment {
     }
 
     Button Profile, Station, Staff, Queue, ContactUs, Privacy;
-
+    String username;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
+
+        if(getArguments() != null){
+            username = getArguments().getString("username");
+            System.out.println(username);
+
+        }
 
 
         Profile = view.findViewById(R.id.profile_btn);
@@ -77,6 +87,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getActivity(), EditProfileUI.class);
+                i.putExtra("username", username);
                 startActivity(i);
             }
         });
@@ -108,7 +119,7 @@ public class SettingsFragment extends Fragment {
         ContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ContactUs.class);
+                Intent i = new Intent(getActivity(), ContactUsUI.class);
                 startActivity(i);
             }
         });
