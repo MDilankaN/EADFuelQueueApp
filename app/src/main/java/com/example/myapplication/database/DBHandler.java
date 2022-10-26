@@ -46,6 +46,8 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public void addUserToDB(User user){
+
+        User userRead = getUserData(user.getUserName());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -59,17 +61,23 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(VEHICLE_NO_COL, user.getVehicleNo());
         values.put(FUEL_TYPE_COL, user.getFuelType());
 
-        db.insert(USER_TABLE, null, values);
+
+        if(userRead == null){
+            db.insert(USER_TABLE, null, values);
+        }
+
         db.close();
 
     }
 
-    public User getUserData(){
+    public User getUserData(String Username){
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursorUser = db.rawQuery("SELECT * FROM " + USER_TABLE, null);
+        Cursor cursorUser = db.rawQuery("SELECT * FROM " + USER_TABLE +" WHERE "+ NAME_COL + " = '"+ Username.trim() +"'", null);
         User userObj = null;
         if(cursorUser.moveToFirst()){
-            do{
+            String[] columnNames = cursorUser.getColumnNames();
+
+            for (int i = 0; i < columnNames.length; i++) {
                 userObj = new User(cursorUser.getString(0),
                         cursorUser.getString(1),
                         cursorUser.getString(7),
@@ -79,16 +87,18 @@ public class DBHandler extends SQLiteOpenHelper {
                         cursorUser.getString(4),
                         cursorUser.getString(3),
                         cursorUser.getString(8));
-            } while (cursorUser.moveToNext());
+            }
         }
 
+        cursorUser.close();
+        db.close();
         return userObj;
     }
 
-    public  void logOutDB(){
-        SQLiteDatabase db = this.getReadableDatabase();
-        db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
-    }
+//    public  void logOutDB(){
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        db.execSQL("DROP TABLE IF EXISTS " + USER_TABLE);
+//    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

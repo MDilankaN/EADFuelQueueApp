@@ -25,6 +25,9 @@ public interface JasonPlaceHolderAPI {
     @POST("/api/User")
     Call<User>createUser(@Body User user);
 
+    @PUT("/api/User/{id}")
+    Call<User>updateUser(@Path("id") String id ,@Body User user);
+
     //add station
     @POST("/api/Station")
     Call<Station>createStation(@Body Station station);
