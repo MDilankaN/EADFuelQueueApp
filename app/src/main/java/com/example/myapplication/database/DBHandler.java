@@ -46,6 +46,8 @@ public class DBHandler extends SQLiteOpenHelper {
     }
 
     public void addUserToDB(User user){
+
+        User userRead = getUserData(user.getUserName());
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -59,7 +61,11 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(VEHICLE_NO_COL, user.getVehicleNo());
         values.put(FUEL_TYPE_COL, user.getFuelType());
 
-        db.insert(USER_TABLE, null, values);
+
+        if(!userRead.equals(null)){
+            db.insert(USER_TABLE, null, values);
+        }
+
         db.close();
 
     }
