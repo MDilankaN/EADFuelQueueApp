@@ -42,6 +42,7 @@ public class HomeUI extends AppCompatActivity {
                         return true;
                     case R.id.settings_menu_id:
                         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, settingsFragment).commit();
+                        settingsFragment.setArguments(bundel);
                         return true;
                 }
                 return false;

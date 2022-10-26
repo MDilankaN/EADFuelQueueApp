@@ -23,6 +23,6 @@ public interface JasonPlaceHolderAPI {
     Call<User>createUser(@Body User user);
 
     @PUT("/api/User/{id}")
-    Call<User>updateUser(@Path("id") @Body User user);
+    Call<User>updateUser(@Path("id") String id ,@Body User user);
 
 }
