@@ -1,8 +1,9 @@
 package com.example.myapplication.api;
 
+import com.example.myapplication.models.ContactUs;
+import com.example.myapplication.models.Station;
 import com.example.myapplication.models.Queue;
 import com.example.myapplication.models.User;
-
 import java.util.List;
 
 import retrofit2.Call;
@@ -24,6 +25,14 @@ public interface JasonPlaceHolderAPI {
     @POST("/api/User")
     Call<User>createUser(@Body User user);
 
+    //add station
+    @POST("/api/Station")
+    Call<Station>createStation(@Body Station station);
+
+    //add contactus
+    @POST("/api/ContactUs")
+    Call<ContactUs>createContactUs(@Body ContactUs contactUs);
+
 
     // Queue
     @GET("/api/Queue")
@@ -40,6 +49,7 @@ public interface JasonPlaceHolderAPI {
 
     @DELETE("/api/Queue/{id}")
     Call<Void>deleteQueue(@Path("id") String id);
+
 
 
 }
