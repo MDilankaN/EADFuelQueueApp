@@ -29,7 +29,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/white"
                 android:fontFamily="@font/raleway_bold"
-                android:text="Manage Station"
+                android:text="Search for nearby fuel station"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/purple"
                 android:textFontWeight="900"
@@ -37,23 +37,16 @@
                 tools:layout_editor_absoluteX="90dp"
                 tools:layout_editor_absoluteY="279dp" />
 
-            <Button
-                android:id="@+id/btn_addstation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Add Station"
-                android:textColor="@color/white"
-                android:layout_marginBottom="50dp" />
 
             <LinearLayout
                 android:id="@+id/searchFuelStation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="left"
+                android:paddingHorizontal="20dp"
+                android:layout_marginBottom="20dp"
                 android:background="@color/light_cream"
                 android:orientation="vertical"
-                android:paddingHorizontal="20dp"
                 android:paddingVertical="20dp"
                 android:textAlignment="textStart"
                 tools:ignore="RtlCompat">
@@ -100,12 +93,11 @@
             <LinearLayout
                 android:id="@+id/searchResultBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="200dp"
                 android:gravity="left"
                 android:orientation="horizontal"
                 android:background="@color/cream"
                 android:paddingHorizontal="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:paddingVertical="20dp"
                 android:textAlignment="textStart"
@@ -113,58 +105,59 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:layout_weight="2"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:id="@+id/imageView2"
-                        android:layout_width="80dp"
-                        android:layout_height="80dp"
-                        android:src="@drawable/gas_pump" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="80dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="left">
 
-                    <TextView
-                        android:text="No fuel stations found"
-                        android:textColor="@color/white"
+                    <LinearLayout
+                        android:id="@+id/stationDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:fontFamily="@font/raleway_medium"
-                        android:textFontWeight="700"
+                        android:gravity="left"
+                        android:orientation="vertical"
+                        android:background="@color/cream"
                         android:textAlignment="textStart"
-                        android:textSize="22sp"/>
+                        tools:ignore="RtlCompat">
+
+                        <TextView
+                            android:text="A very long station name with two lines"
+                            android:textColor="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/raleway_medium"
+                            android:textFontWeight="700"
+                            android:textAlignment="textStart"
+                            android:textSize="26sp"/>
+
+                        <TextView
+                            android:text="Station Address Station Address Station Address"
+                            android:textColor="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/raleway_medium"
+                            android:textFontWeight="700"
+                            android:textAlignment="textStart"
+                            android:textSize="21sp"/>
+
+                        <TextView
+                            android:text="Opens at 7AM"
+                            android:textColor="@color/white"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:fontFamily="@font/raleway_medium"
+                            android:textFontWeight="700"
+                            android:textAlignment="textStart"
+                            android:textSize="15sp"/>
+
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
-
-            <Button
-                android:id="@+id/btn_updatestation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Update Station"
-                android:textColor="@color/white"
-                android:layout_marginBottom="20dp" />
-
-            <Button
-                android:id="@+id/btn_removestation"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Remove Station"
-                android:textColor="@color/white"
-                android:layout_marginBottom="20dp" />
-
-
-
 
         </LinearLayout>
 
