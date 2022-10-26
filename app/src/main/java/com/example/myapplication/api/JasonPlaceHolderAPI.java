@@ -1,5 +1,7 @@
 package com.example.myapplication.api;
 
+import com.example.myapplication.models.ContactUs;
+import com.example.myapplication.models.Station;
 import com.example.myapplication.models.User;
 
 import java.util.List;
@@ -24,5 +26,13 @@ public interface JasonPlaceHolderAPI {
 
     @PUT("/api/User/{id}")
     Call<User>updateUser(@Path("id") String id ,@Body User user);
+
+    //add station
+    @POST("/api/Station")
+    Call<Station>createStation(@Body Station station);
+
+    //add contactus
+    @POST("/api/ContactUs")
+    Call<ContactUs>createContactUs(@Body ContactUs contactUs);
 
 }

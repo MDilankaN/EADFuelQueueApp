@@ -119,7 +119,7 @@ public class SettingsFragment extends Fragment {
         ContactUs.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getActivity(), ContactUs.class);
+                Intent i = new Intent(getActivity(), ContactUsUI.class);
                 startActivity(i);
             }
         });
