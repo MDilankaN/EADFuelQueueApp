@@ -29,7 +29,7 @@
                 android:layout_marginBottom="20dp"
                 android:background="@color/white"
                 android:fontFamily="@font/raleway_bold"
-                android:text="Search for nearby fuel station"
+                android:text="Search for fuel station"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                 android:textColor="@color/purple"
                 android:textFontWeight="900"
@@ -50,19 +50,6 @@
                 android:paddingVertical="20dp"
                 android:textAlignment="textStart"
                 tools:ignore="RtlCompat">
-
-                <TextView
-                    android:id="@+id/login_welcome_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/raleway_regular"
-                    android:text="Search for Fuel Station"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/purple"
-                    android:textFontWeight="900"
-                    android:textStyle="bold"
-                    tools:layout_editor_absoluteX="90dp"
-                    tools:layout_editor_absoluteY="279dp" />
 
                 <EditText
                     android:id="@+id/fuelStationField"
@@ -93,7 +80,7 @@
             <LinearLayout
                 android:id="@+id/searchResultBox"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:gravity="left"
                 android:orientation="horizontal"
                 android:background="@color/cream"
@@ -120,7 +107,7 @@
                         tools:ignore="RtlCompat">
 
                         <TextView
-                            android:text="A very long station name with two lines"
+                            android:text="IOC Filling Station"
                             android:textColor="@color/white"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
@@ -131,7 +118,7 @@
                             android:textSize="26sp"/>
 
                         <TextView
-                            android:text="Station Address Station Address Station Address"
+                            android:text="No 11, Marine Drive, Colombo 06"
                             android:textColor="@color/white"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
