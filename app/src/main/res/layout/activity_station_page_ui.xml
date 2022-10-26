@@ -6,7 +6,7 @@
     android:background="@color/white"
     tools:context=".StaffCrudUI">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -26,7 +26,7 @@
                 android:id="@+id/manageText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20dp"
+                android:layout_marginBottom="10dp"
                 android:gravity="right"
                 android:background="@color/white"
                 android:fontFamily="@font/raleway_bold"
@@ -41,29 +41,29 @@
             <LinearLayout
                 android:id="@+id/searchResultBox"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:background= "@drawable/queue_card"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/queue_card"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
                 android:paddingVertical="20dp"
                 android:textAlignment="textStart"
                 tools:ignore="RtlCompat">
 
                 <TextView
-                    android:text="Queue Position: 9"
-                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:gravity="center"
                     android:fontFamily="@font/raleway_medium"
-                    android:textFontWeight="700"
+                    android:gravity="center"
+                    android:text="Queue Position: 9"
                     android:textAlignment="center"
-                    android:textSize="30sp"/>
+                    android:textColor="@color/white"
+                    android:textFontWeight="700"
+                    android:textSize="30sp" />
 
-             </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/stationAddress"
@@ -120,7 +120,7 @@
                 android:gravity="center"
                 android:text="Join Queue"
                 android:textColor="@color/white"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="10dp" />
 
             <Button
                 android:id="@+id/btn_exit_before"
@@ -129,7 +129,7 @@
                 android:gravity="center"
                 android:text="Exit Before Refuel"
                 android:textColor="@color/white"
-                android:layout_marginBottom="20dp" />
+                android:layout_marginBottom="10dp" />
 
             <Button
                 android:id="@+id/btn_exit_after"
@@ -138,10 +138,7 @@
                 android:gravity="center"
                 android:text="Exit After Refuel"
                 android:textColor="@color/white"
-                android:layout_marginBottom="20dp" />
-
-
-
+                android:layout_marginBottom="10dp" />
 
         </LinearLayout>
 
