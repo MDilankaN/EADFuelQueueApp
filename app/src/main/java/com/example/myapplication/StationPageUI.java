@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.api.JasonPlaceHolderAPI;
@@ -24,6 +25,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class StationPageUI extends AppCompatActivity {
 
+    String  id, stationName, address, telephone, openTime, closeTime, imageURL;
+    int noOfPumps;
+
+    TextView stationNameView, addressView, openingTimeView, telNoView;
+
     Button joinQueue, exitBeforeBtn, exitAfterBtn;
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
     QueueList CurrentUser;
@@ -31,6 +37,22 @@ public class StationPageUI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station_page_ui);
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            id = extras.getString("id");
+            stationName = extras.getString("stationName");
+            address = extras.getString("address");
+            telephone = extras.getString("telephone");
+            openTime = extras.getString("openTime");
+            closeTime = extras.getString("closeTime");
+            imageURL = extras.getString("imageURL");
+            noOfPumps = extras.getInt("noOfPumps");
+        }
+
+        stationNameView = findViewById(R.id.manageText);
+        addressView = findViewById(R.id.stationAddress);
+        openingTimeView = findViewById(R.id.stationOpeningTime);
+        telNoView = findViewById(R.id.stationTelNo);
 
         joinQueue = findViewById(R.id.btn_join);
         exitBeforeBtn = findViewById(R.id.btn_exit_before);
