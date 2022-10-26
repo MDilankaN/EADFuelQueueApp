@@ -4,27 +4,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.telecom.Call;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.example.myapplication.api.JasonPlaceHolderAPI;
+import com.example.myapplication.models.User;
 
-import java.util.HashMap;
-import java.util.Map;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class Register2UI extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -36,7 +32,10 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
     Spinner spinner2;
     Spinner spinner3;
     TextView LoginRedirectBtn;
-    String username, password, email, vehicleNo;
+    String username, password, email, vehicleNo, vehicleType, fuelType, language;
+    Boolean isLoading = false;
+
+    private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,6 +58,8 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
         spinner2 = findViewById(R.id.spinner2);
         spinner3 = findViewById(R.id.spinner3);
 
+        System.out.println(RegisterBtn.getText().toString());
+
         spinner1.setOnItemSelectedListener(this);
         spinner2.setOnItemSelectedListener(this);
         spinner3.setOnItemSelectedListener(this);
@@ -66,9 +67,12 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
         RegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registerUser(username, email, password, vehicleNo, "", "", "", "admin");
-//                Intent intent =  new Intent(Register2UI.this, HomeUI.class);
-//                startActivity(intent);
+                if (!fuelType.equals("") && !vehicleType.equals("") && !language.equals("")) {
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                    jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+                    registerUser(username, email, password, vehicleNo, fuelType, vehicleType, language, "user");
+                    RegisterBtn.setText("Loading...");
+                }
             }
         });
 
@@ -95,6 +99,16 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+
+        fuelType = spinner1.getSelectedItem().toString();
+        vehicleType = spinner2.getSelectedItem().toString();
+        language = spinner3.getSelectedItem().toString();
+
+        System.out.println(fuelType);
+        System.out.println(vehicleType);
+        System.out.println(language);
+
+
 //        Toast.makeText(getApplicationContext(),fuelTypes[position] , Toast.LENGTH_LONG).show();
 //        Toast.makeText(getApplicationContext(),vehicleTypes[position] , Toast.LENGTH_LONG).show();
 //        Toast.makeText(getApplicationContext(),languages[position] , Toast.LENGTH_LONG).show();
@@ -106,37 +120,36 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
     }
 
     public void registerUser(String username, String email, String password, String vehicleNo, String vehicleType, String fuelType, String language, String type) {
+        User user = new User(username, email, password, vehicleNo, vehicleType, fuelType, language, type);
 
-        RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "https://localhost:7053/api/User/";
+        System.out.println(user.getId());
+        System.out.println("--------------------------------");
+        Call<User> call = jsonPlaceHolderAPI.createUser(user);
 
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, url, null, new Response.Listener() {
+        call.enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Object response) {
-                System.out.println(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                System.out.println(error);
-            }
-        }) {
-            @Override
-            protected Map getParams() {
-                Map params = new HashMap();
-                params.put("username", username);
-                params.put("email", email);
-                params.put("password", password);
-                params.put("vehicleNo", vehicleNo);
-                params.put("vehicleType", vehicleType);
-                params.put("fuelType", fuelType);
-                params.put("language", language);
-                params.put("type", type);
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(Register2UI.this, "Error", Toast.LENGTH_LONG).show();
+                    return;
+                }
 
-                return params;
+                Toast.makeText(Register2UI.this, "Successfully registered", Toast.LENGTH_LONG).show();
+                User userRes = response.body();
+                System.out.println("userRes");
+                System.out.println(userRes.getEmail());
+                System.out.println(userRes.getUserName());
+                System.out.println(userRes.getFuelType());
+                System.out.println(userRes.getLanguage());
+                System.out.println(userRes.getVehicleNo());
+                System.out.println(userRes.getVehicleType());
             }
-        };
 
-        queue.add(request);
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(Register2UI.this, "Error : onFailure", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }
