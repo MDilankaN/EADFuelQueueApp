@@ -26,14 +26,13 @@ public class StationPageUI extends AppCompatActivity {
         joinQueue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNewActivity();
+
             }
         });
 
         exitBeforeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNewActivity2();
             }
         });
 
