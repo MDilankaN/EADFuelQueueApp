@@ -126,7 +126,21 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".UpdateStationUI"
+            android:name=".QueueCrudUI"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".AddQueueUI"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".UpdateQueueUI"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
