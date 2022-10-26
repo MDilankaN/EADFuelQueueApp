@@ -5,13 +5,13 @@ import com.google.gson.annotations.SerializedName;
 public class QueueList {
     @SerializedName("id")
     private String Id = "";
-    @SerializedName("userid")
+    @SerializedName("userID")
     private String UserID;
-    @SerializedName("queueid")
+    @SerializedName("queueID")
     private String QueueID;
-    @SerializedName("jointime")
+    @SerializedName("joinTime")
     private String JoinTime;
-    @SerializedName("lefttime")
+    @SerializedName("leftTime")
     private String LeftTime;
     @SerializedName("position")
     private String Position;

@@ -60,6 +60,9 @@ public interface JasonPlaceHolderAPI {
 
 
     //QueueList
+    @GET("/api/QueueList/GetQueueListByQueue/{queueID}")
+    Call<List<QueueList>> QueueListOrder(@Path("queueID") String queueID);
+
     @POST("/api/QueueList")
     Call<QueueList>joinQueueList(@Body QueueList list);
 
