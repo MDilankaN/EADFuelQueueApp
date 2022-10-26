@@ -20,6 +20,57 @@ public class Station {
     @SerializedName("noOfPumps")
     private String NoOfPumps;
 
+    public String getId() {
+        return Id;
+    }
 
+    public String getStationName() {
+        return StationName;
+    }
 
+    public String getAddress() {
+        return Address;
+    }
+
+    public String getTelephone() {
+        return Telephone;
+    }
+
+    public String getOpenTime() {
+        return OpenTime;
+    }
+
+    public String getCloseTime() {
+        return CloseTime;
+    }
+
+    public String getImageURL() {
+        return ImageURL;
+    }
+
+    public String getNoOfPumps() {
+        return NoOfPumps;
+    }
+
+    public Station(String stationName, String address, String telephone, String openTime, String closeTime, String imageURL, String noOfPumps) {
+        StationName = stationName;
+        Address = address;
+        Telephone = telephone;
+        OpenTime = openTime;
+        CloseTime = closeTime;
+        ImageURL = imageURL;
+        NoOfPumps = noOfPumps;
+    }
+
+    public Station(String id, String stationName, String address, String telephone, String openTime, String closeTime, String imageURL, String noOfPumps) {
+        Id = id;
+        StationName = stationName;
+        Address = address;
+        Telephone = telephone;
+        OpenTime = openTime;
+        CloseTime = closeTime;
+        ImageURL = imageURL;
+        NoOfPumps = noOfPumps;
+    }
 }
+
