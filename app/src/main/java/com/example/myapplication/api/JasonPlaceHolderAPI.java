@@ -39,7 +39,7 @@ public interface JasonPlaceHolderAPI {
     Call<Queue>updateQueue(@Path("id") String id, @Body Queue queue);
 
     @DELETE("/api/Queue/{id}")
-    Call<Queue>deleteQueue(@Path("id") String id, @Body Queue queue);
+    Call<Void>deleteQueue(@Path("id") String id);
 
 
 }

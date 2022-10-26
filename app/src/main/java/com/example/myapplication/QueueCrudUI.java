@@ -1,8 +1,10 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -95,9 +97,46 @@ public class QueueCrudUI extends AppCompatActivity {
         remove_queue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                new AlertDialog.Builder(QueueCrudUI.this)
+                    .setTitle("Remove this queue")
+                    .setMessage("Do you want to remove?")
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                            jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+                            removeQueue();
+                        }
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
             }
         });
     }
+
+    public void removeQueue(){
+
+        Call<Void> call = jsonPlaceHolderAPI.deleteQueue(id);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(QueueCrudUI.this, "Failed", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(QueueCrudUI.this, "Removed", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(QueueCrudUI.this, QueueCrudUI.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println(t);
+                Toast.makeText(QueueCrudUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
 
     public void searchQueue(String searchValue) {
 
@@ -134,7 +173,7 @@ public class QueueCrudUI extends AppCompatActivity {
                     content += "Fuel Status: Available";
                 }
                 if(queues.getFuelStatus() == false){
-                    content += "Fuel: Unavailable";
+                    content += "Fuel Status: Unavailable";
                 }
 
                 result.append(content);

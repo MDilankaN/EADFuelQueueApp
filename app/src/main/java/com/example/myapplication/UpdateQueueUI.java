@@ -142,7 +142,7 @@ public class UpdateQueueUI extends AppCompatActivity {
             @Override
             public void onFailure(Call<Queue> call, Throwable t) {
                 System.out.println(t);
-                Toast.makeText(UpdateQueueUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
+//                Toast.makeText(UpdateQueueUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
             }
 
         });
