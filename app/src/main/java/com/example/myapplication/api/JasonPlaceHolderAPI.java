@@ -8,6 +8,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface JasonPlaceHolderAPI {
@@ -20,5 +21,8 @@ public interface JasonPlaceHolderAPI {
 
     @POST("/api/User")
     Call<User>createUser(@Body User user);
+
+    @PUT("/api/User/{id}")
+    Call<User>updateUser(@Path("id") @Body User user);
 
 }
