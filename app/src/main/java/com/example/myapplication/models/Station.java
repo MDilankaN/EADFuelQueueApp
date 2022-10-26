@@ -18,7 +18,7 @@ public class Station {
     @SerializedName("imageURL")
     private String ImageURL;
     @SerializedName("noOfPumps")
-    private String NoOfPumps;
+    private int NoOfPumps;
 
     public String getId() {
         return Id;
@@ -48,11 +48,11 @@ public class Station {
         return ImageURL;
     }
 
-    public String getNoOfPumps() {
+    public int getNoOfPumps() {
         return NoOfPumps;
     }
 
-    public Station(String stationName, String address, String telephone, String openTime, String closeTime, String imageURL, String noOfPumps) {
+    public Station(String stationName, String address, String telephone, String openTime, String closeTime, String imageURL, int noOfPumps) {
         StationName = stationName;
         Address = address;
         Telephone = telephone;
@@ -62,7 +62,7 @@ public class Station {
         NoOfPumps = noOfPumps;
     }
 
-    public Station(String id, String stationName, String address, String telephone, String openTime, String closeTime, String imageURL, String noOfPumps) {
+    public Station(String id, String stationName, String address, String telephone, String openTime, String closeTime, String imageURL, int noOfPumps) {
         Id = id;
         StationName = stationName;
         Address = address;
