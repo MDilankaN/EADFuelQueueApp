@@ -8,10 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.api.JasonPlaceHolderAPI;
-import com.example.myapplication.models.Queue;
 import com.example.myapplication.models.Station;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -33,12 +31,10 @@ public class SearchFuelStation extends AppCompatActivity {
 
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
-    LinearLayout stationDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_fuel_station_ui);
-
 
         searchBtn = findViewById(R.id.searchStationBtn);
         search = findViewById(R.id.fuelStationField);
@@ -128,6 +124,7 @@ public class SearchFuelStation extends AppCompatActivity {
             }
 
         });
+
     }
 
 }
