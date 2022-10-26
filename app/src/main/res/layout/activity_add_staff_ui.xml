@@ -57,7 +57,7 @@
 
 
             <EditText
-                android:id="@+id/username"
+                android:id="@+id/username_staff"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -72,7 +72,7 @@
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/email"
+                android:id="@+id/email_staff"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -87,7 +87,7 @@
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/employee_no"
+                android:id="@+id/employeeno_Staff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -102,7 +102,7 @@
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/password"
+                android:id="@+id/password_staff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
@@ -117,7 +117,7 @@
                 tools:layout_editor_absoluteY="402dp" />
 
             <EditText
-                android:id="@+id/confirmation_password"
+                android:id="@+id/confirmation_password_staff"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
