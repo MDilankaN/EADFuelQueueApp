@@ -55,8 +55,6 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        User user = dbHandler.getUserData();
-//        System.out.println(user.getUserName());
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
@@ -64,13 +62,21 @@ public class HomeFragment extends Fragment {
     }
 
     Button search, searchNear;
-
+    String username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        if(getArguments() != null){
+            username = getArguments().getString("username");
+            System.out.println(username);
+
+        }
+
+
 
         search = view.findViewById(R.id.search_btn);
         searchNear = view.findViewById(R.id.search_near_btn);
