@@ -69,6 +69,10 @@ public class StationPageUI extends AppCompatActivity {
 
         ListItem = findViewById(R.id.list_itemname);
 
+        stationNameView.setText(stationName);
+        addressView.setText(address);
+        telNoView.setText(telephone);
+        openingTimeView.setText("Opens at " + openTime);
 
         exitBeforeBtn.setVisibility(View.GONE);
         exitAfterBtn.setVisibility(View.GONE);
@@ -116,7 +120,7 @@ public class StationPageUI extends AppCompatActivity {
                 List<QueueList> queueList = response.body();
 
                 for (QueueList queueListI : queueList) {
-                    String content = "ID: " + queueListI.getId() + "\n" + "ID: " + queueListI.getUserID() + "\n" + "ID: " + queueListI.getJoinTime() + "\n\n\n";
+                    String content = "ID: " + queueListI.getId() + "\n" + "User ID: " + queueListI.getUserID() + "\n" + "Joined Time: " + queueListI.getJoinTime() + "\n\n\n";
                     System.out.println(content);
                     ListItem.append(content);
                 }
