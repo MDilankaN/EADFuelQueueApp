@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".StaffCrudUI">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="left"
+            android:orientation="vertical"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="20dp"
+            android:textAlignment="textStart"
+            tools:ignore="RtlCompat">
+
+            <TextView
+                android:id="@+id/manageText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="right"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Station Name"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/purple"
+                android:textFontWeight="900"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="279dp" />
+
+            <LinearLayout
+                android:id="@+id/searchResultBox"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background= "@drawable/queue_card"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:paddingVertical="20dp"
+                android:textAlignment="textStart"
+                tools:ignore="RtlCompat">
+
+                <TextView
+                    android:text="Queue Position: 9"
+                    android:textColor="@color/white"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:fontFamily="@font/raleway_medium"
+                    android:textFontWeight="700"
+                    android:textAlignment="center"
+                    android:textSize="30sp"/>
+
+             </LinearLayout>
+
+            <TextView
+                android:id="@+id/stationAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Station Address"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/purple"
+                android:textFontWeight="900"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="279dp" />
+
+            <TextView
+                android:id="@+id/stationOpeningTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Station Opening Time"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/purple"
+                android:textFontWeight="900"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="279dp" />
+
+            <TextView
+                android:id="@+id/stationTelNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:gravity="center"
+                android:background="@color/white"
+                android:fontFamily="@font/raleway_bold"
+                android:text="Station Tel No"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="@color/purple"
+                android:textFontWeight="900"
+                android:textStyle="bold"
+                tools:layout_editor_absoluteX="90dp"
+                tools:layout_editor_absoluteY="279dp" />
+
+            <Button
+                android:id="@+id/btn_join"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Join Queue"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:id="@+id/btn_exit_before"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Exit Before Refuel"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp" />
+
+            <Button
+                android:id="@+id/btn_exit_after"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Exit After Refuel"
+                android:textColor="@color/white"
+                android:layout_marginBottom="20dp" />
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

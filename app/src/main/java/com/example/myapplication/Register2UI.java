@@ -32,7 +32,8 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
     Spinner spinner2;
     Spinner spinner3;
     TextView LoginRedirectBtn;
-    String username, password, email, vehicleNo;
+    String username, password, email, vehicleNo, vehicleType, fuelType, language;
+    Boolean isLoading = false;
 
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
@@ -57,6 +58,8 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
         spinner2 = findViewById(R.id.spinner2);
         spinner3 = findViewById(R.id.spinner3);
 
+        System.out.println(RegisterBtn.getText().toString());
+
         spinner1.setOnItemSelectedListener(this);
         spinner2.setOnItemSelectedListener(this);
         spinner3.setOnItemSelectedListener(this);
@@ -64,11 +67,12 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
         RegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
-                jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
-                registerUser(username, email, password, vehicleNo, "", "", "", "admin");
-//                Intent intent =  new Intent(Register2UI.this, HomeUI.class);
-//                startActivity(intent);
+                if (!fuelType.equals("") && !vehicleType.equals("") && !language.equals("")) {
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                    jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+                    registerUser(username, email, password, vehicleNo, fuelType, vehicleType, language, "user");
+                    RegisterBtn.setText("Loading...");
+                }
             }
         });
 
@@ -95,6 +99,16 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
 
     @Override
     public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
+
+        fuelType = spinner1.getSelectedItem().toString();
+        vehicleType = spinner2.getSelectedItem().toString();
+        language = spinner3.getSelectedItem().toString();
+
+        System.out.println(fuelType);
+        System.out.println(vehicleType);
+        System.out.println(language);
+
+
 //        Toast.makeText(getApplicationContext(),fuelTypes[position] , Toast.LENGTH_LONG).show();
 //        Toast.makeText(getApplicationContext(),vehicleTypes[position] , Toast.LENGTH_LONG).show();
 //        Toast.makeText(getApplicationContext(),languages[position] , Toast.LENGTH_LONG).show();
@@ -120,9 +134,15 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
                     return;
                 }
 
+                Toast.makeText(Register2UI.this, "Successfully registered", Toast.LENGTH_LONG).show();
                 User userRes = response.body();
                 System.out.println("userRes");
-                System.out.println(userRes);
+                System.out.println(userRes.getEmail());
+                System.out.println(userRes.getUserName());
+                System.out.println(userRes.getFuelType());
+                System.out.println(userRes.getLanguage());
+                System.out.println(userRes.getVehicleNo());
+                System.out.println(userRes.getVehicleType());
             }
 
             @Override
