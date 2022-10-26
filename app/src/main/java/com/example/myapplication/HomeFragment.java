@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.example.myapplication.database.DBHandler;
 import com.example.myapplication.models.User;
@@ -63,6 +65,7 @@ public class HomeFragment extends Fragment {
     }
 
     Button search, searchNear;
+    ImageView logout;
     String username;
     Context thiscontext;
 
@@ -81,10 +84,20 @@ public class HomeFragment extends Fragment {
         }
 
 
-
+        logout = view.findViewById(R.id.logout);
         search = view.findViewById(R.id.search_btn);
         searchNear = view.findViewById(R.id.search_near_btn);
 
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                Toast.makeText(getActivity(), "Logged out", Toast.LENGTH_SHORT).show();
+                startActivity(i);
+//                finish();
+            }
+        });
         search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
