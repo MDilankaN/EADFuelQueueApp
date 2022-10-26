@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.database.DBHandler;
@@ -66,6 +68,7 @@ public class HomeFragment extends Fragment {
 
     Button search, searchNear;
     ImageView logout;
+    TextView welcomeMsg;
     String username;
     Context thiscontext;
 
@@ -76,11 +79,17 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         thiscontext = container.getContext();
         dbHandler = new DBHandler(thiscontext);
+
+
+        welcomeMsg = view.findViewById(R.id.welcome_msg);
+
         if(getArguments() != null){
             username = getArguments().getString("username");
             System.out.println(username);
             User user = dbHandler.getUserData(username);
             System.out.println(user.getUserName());
+
+            welcomeMsg.setText("Welcome " + user.getUserName() + ",");
         }
 
 

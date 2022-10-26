@@ -33,6 +33,10 @@ public interface JasonPlaceHolderAPI {
     @POST("/api/Station")
     Call<Station>createStation(@Body Station station);
 
+    //get by station name
+    @GET("/api/Station/GetStationByName/{stationName}")
+    Call<Station>getStationByName(@Path("stationName") String stationName);
+
     //add contactus
     @POST("/api/ContactUs")
     Call<ContactUs>createContactUs(@Body ContactUs contactUs);
