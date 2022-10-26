@@ -12,20 +12,32 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import com.example.myapplication.api.JasonPlaceHolderAPI;
+import com.example.myapplication.models.Station;
+import com.example.myapplication.models.User;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class AddStationUI extends AppCompatActivity {
 
     private TextView TimeTextView1, TimeTextView2;
     private Button addStation, btnOpenTime, btnCloseTime;
+    String ImageURL = "";
 
     EditText stationName, stationTel, stationAddress1, stationAddress2;
 
     String stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime;
+
+    private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,12 +69,22 @@ public class AddStationUI extends AppCompatActivity {
                 openingTime = TimeTextView1.getText().toString();
                 closingTime = TimeTextView2.getText().toString();
 
+
                 if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("") && !stationAddress2Val.equals("")
                         && !TimeTextView1.equals("") && !TimeTextView2.equals("")) {
-                    addStation(stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime);
+                    //addStation(stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime);
+
+                    //add data
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+//                jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+//                registerUser(username, email, password, vehicleNo, fuelType, vehicleType, language, "user");
+                    addStation.setText("Loading...");
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
+                    return;
                 }
+
+
             }
         });
 
@@ -114,7 +136,13 @@ public class AddStationUI extends AppCompatActivity {
 
     }
 
-    public void addStation(String stationName, String stationTelNo, String stationAddress1, String stationAddress2, String openingTime, String closingTime) {
+    public void addStation(String stationName, String stationAddress1, String stationAddress2, String stationTelNo, String openingTime, String closingTime, String imageURL, int noOfPumps) {
+
+        String Address = stationAddress1 +" " + stationAddress2;
+        Station station = new Station(stationName, Address, stationTelNo, openingTime, closingTime, imageURL, noOfPumps);
+
+//        Call<Station> call = jsonPlaceHolderAPI.createUser(user);
+        Call<Station> call = jsonPlaceHolderAPI.createStation(station);
 
         System.out.println(stationName);
         System.out.println(stationTelNo);
@@ -122,6 +150,30 @@ public class AddStationUI extends AppCompatActivity {
         System.out.println(stationAddress2);
         System.out.println(openingTime);
         System.out.println(closingTime);
+
+        call.enqueue(new Callback<Station>() {
+            @Override
+            public void onResponse(Call<Station> call, Response<Station> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(AddStationUI.this, "Error", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(AddStationUI.this, "Successfully registered", Toast.LENGTH_LONG).show();
+                Station stationRes = response.body();
+                System.out.println("stationRes");
+                System.out.println("stationRes");
+                System.out.println(stationRes.getStationName());
+                System.out.println(stationRes.getAddress());
+                System.out.println(stationRes.getOpenTime());
+                System.out.println(stationRes.getCloseTime());
+            }
+
+            @Override
+            public void onFailure(Call<Station> call, Throwable t) {
+                Toast.makeText(AddStationUI.this, "Error : onFailure", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 }
