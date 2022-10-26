@@ -102,7 +102,7 @@ public class EditProfileUI extends AppCompatActivity {
         String password = userData.getPassword();
         String lang = userData.getLanguage();
         String type = userData.getType();
-        User user = new User(userid, username,email,password,vehicleNoVal,vehicletypeX,fuel,lang,type);
+        User user = new User( username,email,password,vehicleNoVal,vehicletypeX,fuel,lang,type);
         Call<User> call = jsonPlaceHolderAPI.updateUser(userid, user);
 
         call.enqueue(new Callback<User>() {
@@ -110,6 +110,7 @@ public class EditProfileUI extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(EditProfileUI.this, "Error", Toast.LENGTH_LONG).show();
+                    System.out.println(response);
                     return;
                 }
 
@@ -120,6 +121,7 @@ public class EditProfileUI extends AppCompatActivity {
             @Override
             public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(EditProfileUI.this, "Error : onFailure", Toast.LENGTH_LONG).show();
+                System.out.println(t);
             }
         });
 
