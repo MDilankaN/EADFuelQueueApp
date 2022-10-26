@@ -7,10 +7,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import com.google.android.material.snackbar.Snackbar;
 
 public class QueueCrudUI extends AppCompatActivity {
 
-    private Button add_queue, update_queue, remove_queue;
+    private Button add_queue, update_queue, remove_queue, searchBtn;;
+    EditText search;
+    String searchVal;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,6 +25,23 @@ public class QueueCrudUI extends AppCompatActivity {
         add_queue = findViewById(R.id.btn_addqueue);
         update_queue = findViewById(R.id.btn_updatequeue);
         remove_queue = findViewById(R.id.btn_removequeue);
+
+        searchBtn = findViewById(R.id.searchStationBtn);
+        search = findViewById(R.id.fuelQueueField);
+
+        searchBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                searchVal = search.getText().toString();
+
+                if (!searchVal.equals("")) {
+                    searchQueue(searchVal);
+                } else {
+                    Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
+                }
+
+            }
+        });
 
         add_queue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -40,6 +63,12 @@ public class QueueCrudUI extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void searchQueue(String searchValue) {
+
+        System.out.println(searchValue);
+
     }
 
     public void openNewActivity(){
