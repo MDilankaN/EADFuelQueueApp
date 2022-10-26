@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,9 +34,10 @@ public class AddStationUI extends AppCompatActivity {
     private Button addStation, btnOpenTime, btnCloseTime;
     String ImageURL = "";
 
-    EditText stationName, stationTel, stationAddress1, stationAddress2;
+    EditText stationName, stationTel, stationAddress1, stationAddress2, noOfPumps;
 
-    String stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime;
+    String stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, imgVal;
+    Integer no_of_pumps;
 
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
@@ -54,6 +56,7 @@ public class AddStationUI extends AppCompatActivity {
         stationTel = findViewById(R.id.station_tel);
         stationAddress1 = findViewById(R.id.station_address1);
         stationAddress2 = findViewById(R.id.station_address2);
+        noOfPumps = findViewById(R.id.station_noOfPumps);
 
         addStation = findViewById(R.id.add_station_btn);
 
@@ -69,15 +72,19 @@ public class AddStationUI extends AppCompatActivity {
                 openingTime = TimeTextView1.getText().toString();
                 closingTime = TimeTextView2.getText().toString();
 
+                no_of_pumps = Integer.valueOf(noOfPumps.getText().toString());
+                imgVal = ImageURL.toString();
+
+
 
                 if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("") && !stationAddress2Val.equals("")
                         && !TimeTextView1.equals("") && !TimeTextView2.equals("")) {
-                    //addStation(stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime);
+                    addStation(stationNameVal, stationAddress1Val, stationAddress2Val, stationTelVal, openingTime, closingTime, imgVal, no_of_pumps);
 
                     //add data
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
-//                jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
-//                registerUser(username, email, password, vehicleNo, fuelType, vehicleType, language, "user");
+                    jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+                    addStation(stationName.toString(), stationAddress1.toString(), stationAddress2.toString(), stationTel.toString(), TimeTextView1.toString(), TimeTextView2.toString(), ImageURL, 5);
                     addStation.setText("Loading...");
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
@@ -136,12 +143,11 @@ public class AddStationUI extends AppCompatActivity {
 
     }
 
-    public void addStation(String stationName, String stationAddress1, String stationAddress2, String stationTelNo, String openingTime, String closingTime, String imageURL, int noOfPumps) {
+    public void addStation(String stationName, String stationAddress1, String stationAddress2, String stationTelNo, String openingTime, String closingTime, String imageURL, int noOfPumps){
 
         String Address = stationAddress1 +" " + stationAddress2;
         Station station = new Station(stationName, Address, stationTelNo, openingTime, closingTime, imageURL, noOfPumps);
 
-//        Call<Station> call = jsonPlaceHolderAPI.createUser(user);
         Call<Station> call = jsonPlaceHolderAPI.createStation(station);
 
         System.out.println(stationName);
