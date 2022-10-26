@@ -50,7 +50,7 @@ public class SearchFuelStation extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 System.out.println(id);
-                Intent intent = new Intent(SearchFuelStation.this, StationPageUI.class);
+                Intent intent = new Intent(SearchFuelStation.this, QueueListByStationUI.class);
                 intent.putExtra("id", id);
                 intent.putExtra("stationName", stationName);
                 intent.putExtra("address", address);
