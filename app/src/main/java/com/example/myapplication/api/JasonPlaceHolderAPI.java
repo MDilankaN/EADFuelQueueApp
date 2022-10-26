@@ -35,7 +35,7 @@ public interface JasonPlaceHolderAPI {
 
     //get by station name
     @GET("/api/Station/GetStationByName/{stationName}")
-    Call<Station>getStationByName(@Path("stationName") String stationName);
+    Call<List<Station>>getStationByName(@Path("stationName") String stationName);
 
     //add contactus
     @POST("/api/ContactUs")

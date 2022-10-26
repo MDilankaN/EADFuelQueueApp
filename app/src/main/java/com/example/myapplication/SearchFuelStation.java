@@ -13,6 +13,8 @@ import com.example.myapplication.api.JasonPlaceHolderAPI;
 import com.example.myapplication.models.Station;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -82,43 +84,46 @@ public class SearchFuelStation extends AppCompatActivity {
     public void searchQueue(String searchValue) {
 
         System.out.println(searchValue);
-        Call<Station> call = jsonPlaceHolderAPI.getStationByName(searchValue);
-        call.enqueue(new Callback<Station>() {
+        Call<List<Station>> call = jsonPlaceHolderAPI.getStationByName(searchValue.trim());
+        call.enqueue(new Callback<List<Station>>() {
             @Override
-            public void onResponse(Call<Station> call, Response<Station> response) {
+            public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(SearchFuelStation.this, "Not Found", Toast.LENGTH_LONG).show();
+                    System.out.println(response);
+
                     return;
                 }
 
                 result_box.setVisibility(View.VISIBLE);
 
-                Station station = response.body();
+                List<Station> station = response.body();
 
-                id = station.getId();
-                stationName = station.getStationName();
-                address = station.getAddress();
-                telephone = station.getTelephone();
-                openTime = station.getOpenTime();
-                closeTime = station.getCloseTime();
-                imageURL = station.getImageURL();
-                noOfPumps = station.getNoOfPumps();
+                for (Station st : station){
+                    id = st.getId();
+                    stationName = st.getStationName();
+                    address = st.getAddress();
+                    telephone = st.getTelephone();
+                    openTime = st.getOpenTime();
+                    closeTime = st.getCloseTime();
+                    imageURL = st.getImageURL();
+                    noOfPumps = st.getNoOfPumps();
 
+                    String content = "";
+                    result.setText(content);
+                    content += "Station Name: " + st.getStationName() + "\n";
+                    content += "Address: " + st.getAddress() + "\n";
+                    content += "Opens between (" + st.getOpenTime() + " - " + st.getCloseTime() + ")";
 
-                String content = "";
-                result.setText(content);
-                content += "Station Name: " + station.getStationName() + "\n";
-                content += "Address: " + station.getAddress() + "\n";
-                content += "Opens between (" + station.getOpenTime() + " - " + station.getCloseTime() + ")";
-
-                result.append(content);
+                    result.append(content);
+                }
 
                 Toast.makeText(SearchFuelStation.this, "Result Found", Toast.LENGTH_LONG).show();
 
             }
 
             @Override
-            public void onFailure(Call<Station> call, Throwable t) {
+            public void onFailure(Call<List<Station>> call, Throwable t) {
                 System.out.println(t);
                 Toast.makeText(SearchFuelStation.this, "Error: Failed", Toast.LENGTH_LONG).show();
             }
