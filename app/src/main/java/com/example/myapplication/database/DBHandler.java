@@ -62,7 +62,7 @@ public class DBHandler extends SQLiteOpenHelper {
         values.put(FUEL_TYPE_COL, user.getFuelType());
 
 
-        if(!userRead.equals(null)){
+        if(userRead == null){
             db.insert(USER_TABLE, null, values);
         }
 
