@@ -112,15 +112,16 @@
                 tools:ignore="RtlCompat">
 
                 <TextView
-                    android:text="No fuel queue found"
+                    android:id="@+id/result"
+                    android:text=""
                     android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:fontFamily="@font/raleway_medium"
                     android:textFontWeight="700"
-                    android:textAlignment="center"
-                    android:textSize="22sp"/>
+                    android:textAlignment="textStart"
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 
@@ -129,7 +130,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Update Queue"
+                android:text="Update This Queue"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
 
@@ -138,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Remove Queue"
+                android:text="Remove This Queue"
                 android:textColor="@color/white"
                 android:layout_marginBottom="20dp" />
 
