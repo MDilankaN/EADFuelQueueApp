@@ -1,6 +1,7 @@
 package com.example.myapplication.api;
 
 import com.example.myapplication.models.ContactUs;
+import com.example.myapplication.models.QueueList;
 import com.example.myapplication.models.Station;
 import com.example.myapplication.models.Queue;
 import com.example.myapplication.models.User;
@@ -52,6 +53,14 @@ public interface JasonPlaceHolderAPI {
 
     @DELETE("/api/Queue/{id}")
     Call<Void>deleteQueue(@Path("id") String id);
+
+
+    //QueueList
+    @POST("/api/QueueList")
+    Call<QueueList>joinQueueList(@Body QueueList list);
+
+    @DELETE("/api/QueueList/{id}")
+    Call<Void>RemoveFromList(@Path("id")String id);
 
 
 
