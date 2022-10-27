@@ -37,7 +37,7 @@ public class AddStationUI extends AppCompatActivity {
     EditText stationName, stationTel, stationAddress1, noOfPumps;
 
     String stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, imgVal;
-    Integer no_of_pumps;
+    int no_of_pumps;
 
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
@@ -77,12 +77,12 @@ public class AddStationUI extends AppCompatActivity {
 
                 if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("")
                         && !TimeTextView1.equals("") && !TimeTextView2.equals("")) {
-                    addStation(stationNameVal, stationAddress1Val, stationTelVal, openingTime, closingTime, imgVal, no_of_pumps);
+
 
                     //add data
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
                     jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
-                    addStation(stationName.toString(), stationAddress1.toString(), stationTel.toString(), TimeTextView1.toString(), TimeTextView2.toString(), ImageURL, 5);
+                    addStation(stationNameVal, stationAddress1Val, stationTelVal, openingTime, closingTime, imgVal, no_of_pumps);
                     addStation.setText("Loading...");
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
@@ -143,7 +143,7 @@ public class AddStationUI extends AppCompatActivity {
 
     public void addStation(String stationName, String stationAddress1, String stationTelNo, String openingTime, String closingTime, String imageURL, int noOfPumps){
 
-        Station station = new Station(stationName, stationAddress1, stationTelNo, "lll", "lll", imageURL, noOfPumps);
+        Station station = new Station(stationName, stationAddress1, stationTelNo, openingTime, closingTime, imageURL, noOfPumps);
 
 
         System.out.println(stationName);
