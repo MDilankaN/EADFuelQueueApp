@@ -171,6 +171,8 @@ public class AddStationUI extends AppCompatActivity {
                 System.out.println(stationRes.getAddress());
                 System.out.println(stationRes.getOpenTime());
                 System.out.println(stationRes.getCloseTime());
+                Intent intent = new Intent(AddStationUI.this, StationCrudUI.class);
+                startActivity(intent);
             }
 
             @Override
