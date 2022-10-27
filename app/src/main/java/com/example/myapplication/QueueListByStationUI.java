@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.api.JasonPlaceHolderAPI;
+import com.example.myapplication.models.Queue;
 import com.example.myapplication.models.QueueList;
 import com.example.myapplication.models.User;
 import com.google.android.material.snackbar.Snackbar;
@@ -83,35 +84,35 @@ public class QueueListByStationUI extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
         jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
 
-        GetListInQueue("11");
+        GetQueuesinStaion(stationName);
 
     }
 
-    private void GetListInQueue(String id) {
-        Call<List<QueueList>> call = jsonPlaceHolderAPI.QueueListOrder(id.trim());
-        call.enqueue(new Callback<List<QueueList>>() {
+    private void GetQueuesinStaion(String name) {
+        Call<List<Queue>> call = jsonPlaceHolderAPI.getQueuesByStation(name);
+        call.enqueue(new Callback<List<Queue>>() {
             @Override
-            public void onResponse(Call<List<QueueList>> call, Response<List<QueueList>> response) {
+            public void onResponse(Call<List<Queue>> call, Response<List<Queue>> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(QueueListByStationUI.this, "Error", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                List<QueueList> queueList = response.body();
-
-                for (QueueList queueListI : queueList) {
-                    String content = "ID: " + queueListI.getId() + "\n" + "User ID: " + queueListI.getUserID() + "\n" + "Join Time: " + queueListI.getJoinTime() + "\n\n\n";
+                List<Queue> queueList = response.body();
+                for (Queue queueListI : queueList) {
+                    String content = "ID: " + queueListI.getId() + "\n" + "Queue Name: " + queueListI.getQueueName() + "\n" + "Fuel Status: " + queueListI.getFuelStatus() + "\n\n\n";
                     System.out.println(content);
                     ListItem.append(content);
                 }
             }
 
             @Override
-            public void onFailure(Call<List<QueueList>> call, Throwable t) {
+            public void onFailure(Call<List<Queue>> call, Throwable t) {
                 Toast.makeText(QueueListByStationUI.this, "Error : onFailure", Toast.LENGTH_LONG).show();
             }
         });
     }
+
 
 
 }

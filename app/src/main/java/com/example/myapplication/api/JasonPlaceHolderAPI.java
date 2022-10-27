@@ -49,6 +49,9 @@ public interface JasonPlaceHolderAPI {
     @GET("/api/Queue/GetByQueueName/{queueName}")
     Call<Queue> getQueueByName(@Path("queueName") String queueName);
 
+    @GET("/api/Queue/GetByStation/{stationName}")
+    Call<List<Queue>> getQueuesByStation(@Path("stationName") String stationName);
+
     @POST("/api/Queue")
     Call<Queue>createQueue(@Body Queue queue);
 
