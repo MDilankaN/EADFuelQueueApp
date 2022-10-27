@@ -44,7 +44,7 @@ public interface JasonPlaceHolderAPI {
     Call<Station>updateStation(@Path("id") String id, @Body Station station);
 
     @DELETE("/api/Station/{id}")
-    Call<Station>deleteStation(@Path("id") String id);
+    Call<Void>deleteStation(@Path("id") String id);
 
 
 
