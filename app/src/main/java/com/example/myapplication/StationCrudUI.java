@@ -145,7 +145,7 @@ public class StationCrudUI extends AppCompatActivity {
                 }
 
                 Toast.makeText(StationCrudUI.this, "Removed", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(StationCrudUI.this, QueueCrudUI.class);
+                Intent intent = new Intent(StationCrudUI.this, StationCrudUI.class);
                 startActivity(intent);
             }
 
