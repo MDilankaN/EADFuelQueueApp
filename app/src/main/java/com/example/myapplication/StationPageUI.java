@@ -32,7 +32,7 @@ public class StationPageUI extends AppCompatActivity {
 
     TextView ListItem;
 
-    String  id, stationName, address, telephone, openTime, closeTime, imageURL;
+    String  id, stationName, address, telephone, openTime, closeTime, imageURL, queue_list_id;
     int noOfPumps;
 
     TextView stationNameView, addressView, openingTimeView, telNoView;
@@ -56,6 +56,8 @@ public class StationPageUI extends AppCompatActivity {
             closeTime = extras.getString("closeTime");
             imageURL = extras.getString("imageURL");
             noOfPumps = extras.getInt("noOfPumps");
+            noOfPumps = extras.getInt("noOfPumps");
+            queue_list_id = extras.getString("queue_list_id");
         }
 
         stationNameView = findViewById(R.id.manageText);
@@ -80,7 +82,7 @@ public class StationPageUI extends AppCompatActivity {
         Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
         jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
 
-        GetListInQueue("11");
+        GetListInQueue(queue_list_id);
 
         joinQueue.setOnClickListener(new View.OnClickListener() {
             @Override
