@@ -28,7 +28,10 @@ public interface JasonPlaceHolderAPI {
     @PUT("/api/User/{id}")
     Call<User>updateUser(@Path("id") String id ,@Body User user);
 
-    //add station
+    //station
+    @GET("/api/Station")
+    Call<List<Queue>> getStations();
+
     @POST("/api/Station")
     Call<Station>createStation(@Body Station station);
 
@@ -36,7 +39,15 @@ public interface JasonPlaceHolderAPI {
     @GET("/api/Station/GetStationByName/{stationName}")
     Call<Station>getStationByName(@Path("stationName") String stationName);
 
-    //add contactus
+    @PUT("/api/Station/{id}")
+    Call<Station>updateStation(@Path("id") String id, @Body Station station);
+
+    @DELETE("/api/Station/{id}")
+    Call<Station>deleteStation(@Path("id") String id);
+
+
+
+    //contactus
     @POST("/api/ContactUs")
     Call<ContactUs>createContactUs(@Body ContactUs contactUs);
 
