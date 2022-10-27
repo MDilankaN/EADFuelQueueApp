@@ -4,18 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.myapplication.api.JasonPlaceHolderAPI;
+import com.example.myapplication.models.Queue;
+import com.example.myapplication.models.Station;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UpdateStationUI extends AppCompatActivity {
     private TextView TimeTextView1, TimeTextView2;
@@ -23,7 +32,9 @@ public class UpdateStationUI extends AppCompatActivity {
 
     EditText stationName, stationTel, stationAddress1, stationAddress2;
 
-    String stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime;
+    String id, stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, imageURL;
+    int noOfPumps;
+    private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,12 +124,33 @@ public class UpdateStationUI extends AppCompatActivity {
 
     public void updateStation(String stationName, String stationTelNo, String stationAddress1, String stationAddress2, String openingTime, String closingTime) {
 
-        System.out.println(stationName);
-        System.out.println(stationTelNo);
-        System.out.println(stationAddress1);
-        System.out.println(stationAddress2);
-        System.out.println(openingTime);
-        System.out.println(closingTime);
+        String Address = stationAddress1 +" " + stationAddress2;
+        Station station = new Station(stationName, Address, stationTelNo, openingTime, closingTime, imageURL, noOfPumps);
+        Call<Station> call = jsonPlaceHolderAPI.updateStation(id,station);
+        call.enqueue(new Callback<Station>() {
+            @Override
+            public void onResponse(Call<Station> call, Response<Station> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(UpdateStationUI.this, "Update unsuccessful", Toast.LENGTH_LONG).show();
+                    System.out.println(response);
+                    return;
+                }
+                Station station = (Station) response.body();
+                System.out.println("station");
+                System.out.println(station.getStationName());
+                System.out.println(station.getTelephone());
+                System.out.println(station.getAddress());
 
+                Toast.makeText(UpdateStationUI.this, "Added", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(UpdateStationUI.this, StationCrudUI.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Station> call, Throwable t) {
+                System.out.println(t);
+//                Toast.makeText(UpdateQueueUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 }
