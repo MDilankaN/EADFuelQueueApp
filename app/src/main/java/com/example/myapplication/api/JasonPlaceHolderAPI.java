@@ -31,14 +31,17 @@ public interface JasonPlaceHolderAPI {
 
     //station
     @GET("/api/Station")
-    Call<List<Queue>> getStations();
+    Call<List<Station>> getStations();
 
     @POST("/api/Station")
     Call<Station>createStation(@Body Station station);
 
-    //get by station name
+//    //get by station name
+//    @GET("/api/Station/GetStationByName/{stationName}")
+//    Call<List<Station>>getStationByName(@Path("stationName") String stationName);
+
     @GET("/api/Station/GetStationByName/{stationName}")
-    Call<List<Station>>getStationByName(@Path("stationName") String stationName);
+    Call<Station> getStationByName(@Path("stationName") String stationName);
 
     @PUT("/api/Station/{id}")
     Call<Station>updateStation(@Path("id") String id, @Body Station station);
