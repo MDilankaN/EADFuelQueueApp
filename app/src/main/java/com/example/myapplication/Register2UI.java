@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 
 import com.example.myapplication.api.JasonPlaceHolderAPI;
+import com.example.myapplication.database.DBHandler;
 import com.example.myapplication.models.User;
 
 import retrofit2.Call;
@@ -34,6 +35,7 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
     TextView LoginRedirectBtn;
     String username, password, email, vehicleNo, vehicleType, fuelType, language;
     Boolean isLoading = false;
+    DBHandler dbHandler;
 
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
@@ -52,6 +54,7 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
         System.out.println(username);
         setContentView(R.layout.activity_register_2_ui);
 
+        dbHandler = new DBHandler(Register2UI.this);
         RegisterBtn = findViewById(R.id.register_btn);
         LoginRedirectBtn = findViewById(R.id.login_link);
         spinner1 = findViewById(R.id.spinner1);
@@ -136,6 +139,7 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
 
                 Toast.makeText(Register2UI.this, "Successfully registered", Toast.LENGTH_LONG).show();
                 User userRes = response.body();
+                dbHandler.addUserToDB(userRes);
                 System.out.println("userRes");
                 System.out.println(userRes.getEmail());
                 System.out.println(userRes.getUserName());
@@ -143,6 +147,10 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
                 System.out.println(userRes.getLanguage());
                 System.out.println(userRes.getVehicleNo());
                 System.out.println(userRes.getVehicleType());
+                Intent intent = new Intent(Register2UI.this, HomeUI.class);
+                intent.putExtra("username", userRes.getUserName());
+                startActivity(intent);
+
             }
 
             @Override
