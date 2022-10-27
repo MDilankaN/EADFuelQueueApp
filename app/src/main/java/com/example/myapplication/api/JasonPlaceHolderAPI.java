@@ -77,6 +77,9 @@ public interface JasonPlaceHolderAPI {
 
 
     //QueueList
+    @GET("/api/QueueList")
+    Call<List<QueueList>> getQueueLists();
+
     @GET("/api/QueueList/GetQueueListByQueue/{queueID}")
     Call<List<QueueList>> QueueListOrder(@Path("queueID") String queueID);
 
