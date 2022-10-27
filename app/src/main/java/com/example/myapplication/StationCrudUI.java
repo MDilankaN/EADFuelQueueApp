@@ -77,7 +77,7 @@ public class StationCrudUI extends AppCompatActivity {
         update_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                openNewActivity2();
             }
         });
 
@@ -106,7 +106,15 @@ public class StationCrudUI extends AppCompatActivity {
     }
 
     public void openNewActivity2(){
+        System.out.println(id);
         Intent intent = new Intent(this, UpdateStationUI.class);
+        intent.putExtra("id", id);
+        intent.putExtra("stationName", stationName);
+        intent.putExtra("stationTelNo", telNo);
+        intent.putExtra("stationAddress", address);
+        intent.putExtra("openTime", timeOpen);
+        intent.putExtra("closeTime", timeClose);
+        intent.putExtra("noOfPumps", noOfPumps);
         startActivity(intent);
     }
 
