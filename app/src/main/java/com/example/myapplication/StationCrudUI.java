@@ -19,6 +19,7 @@ import com.example.myapplication.models.Queue;
 import com.example.myapplication.models.Station;
 import com.google.android.material.snackbar.Snackbar;
 
+import java.util.List;
 import java.util.Stack;
 
 import retrofit2.Call;
@@ -38,7 +39,7 @@ public class StationCrudUI extends AppCompatActivity {
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
     LinearLayout result_box;
 
-    @SuppressLint("MissingInflatedId")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,12 +54,18 @@ public class StationCrudUI extends AppCompatActivity {
         result = findViewById(R.id.result);
         result_box = findViewById(R.id.searchResultBox);
 
+        result_box.setVisibility(View.GONE);
+        update_station.setVisibility(View.GONE);
+        remove_station.setVisibility(View.GONE);
+
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 searchVal = search.getText().toString();
 
                 if (!searchVal.equals("")) {
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                    jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
                     searchStation(searchVal);
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
@@ -77,7 +84,16 @@ public class StationCrudUI extends AppCompatActivity {
         update_station.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openNewActivity2();
+                System.out.println(id);
+                Intent intent = new Intent(StationCrudUI.this, UpdateStationUI.class);
+                intent.putExtra("id", id);
+                intent.putExtra("stationName", stationName);
+                intent.putExtra("address", address);
+                intent.putExtra("telNo", telNo);
+                intent.putExtra("timeOpen", timeOpen);
+                intent.putExtra("timeClose", timeClose);
+                intent.putExtra("noOfPumps", noOfPumps);
+                startActivity(intent);
             }
         });
 
@@ -144,10 +160,10 @@ public class StationCrudUI extends AppCompatActivity {
     public void searchStation(String searchValue) {
 
         System.out.println(searchValue);
-        Call<Station> call = jsonPlaceHolderAPI.getStationByName2(searchValue);
-        call.enqueue(new Callback<Station>() {
+        Call<List<Station>> call = jsonPlaceHolderAPI.getStationByName(searchValue);
+        call.enqueue(new Callback<List<Station>>() {
             @Override
-            public void onResponse(Call<Station> call, Response<Station> response) {
+            public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(StationCrudUI.this, "Not Found", Toast.LENGTH_LONG).show();
                     return;
@@ -157,39 +173,35 @@ public class StationCrudUI extends AppCompatActivity {
                 update_station.setVisibility(View.VISIBLE);
                 remove_station.setVisibility(View.VISIBLE);
 
-                Station station = response.body();
+                List<Station> station = response.body();
 
-                id = station.getId();
-                stationName = station.getStationName();
-                telNo = station.getTelephone();
-                address = station.getAddress();
-                timeOpen = station.getOpenTime();
-                timeClose = station.getCloseTime();
-                noOfPumps = station.getNoOfPumps();
-
-                String content = "";
-                result.setText(content);
-                content += "Station Name: " + station.getStationName() + "\n";
-                content += "Station TelNo: " + station.getOpenTime() + "\n";
-                content += "Station Address: " + station.getAddress() + "\n";
-                content += "Starting Time: " + station.getOpenTime() + "\n";
-                content += "Close Time: " + station.getCloseTime() + "\n";
-                content += "No of pumps: " + station.getNoOfPumps() + "\n";
-//                if (queues.getFuelStatus() == true) {
-//                    content += "Fuel Status: Available";
-//                }
-//                if (queues.getFuelStatus() == false) {
-//                    content += "Fuel Status: Unavailable";
-//                }
-
-                result.append(content);
-
-                Toast.makeText(StationCrudUI.this, "Result Found", Toast.LENGTH_LONG).show();
+                if(station.size() != 0){
+                    result_box.setVisibility(View.VISIBLE);
+                    for (Station st : station){
+                        id = st.getId();
+                        stationName = st.getStationName();
+                        address = st.getAddress();
+                        telNo = st.getTelephone();
+                        timeOpen = st.getOpenTime();
+                        timeClose = st.getCloseTime();
+                        noOfPumps = st.getNoOfPumps();
+                        String content = "";
+                        result.setText(content);
+                        content += "Station Name: " + st.getStationName() + "\n";
+                        content += "Address: " + st.getAddress() + "\n";
+                        content += "Opens between (" + st.getOpenTime() + " - " + st.getCloseTime() + ")";
+                        result.append(content);
+                    }
+                    Toast.makeText(StationCrudUI.this, "Result Found", Toast.LENGTH_SHORT).show();
+                }
+                if(station.size() == 0){
+                    Toast.makeText(StationCrudUI.this, "Station does not exist", Toast.LENGTH_SHORT).show();
+                }
 
             }
 
             @Override
-            public void onFailure(Call<Station> call, Throwable t) {
+            public void onFailure(Call<List<Station>> call, Throwable t) {
                 System.out.println(t);
                 Toast.makeText(StationCrudUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
             }

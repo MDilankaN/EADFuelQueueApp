@@ -32,7 +32,7 @@ public class UpdateStationUI extends AppCompatActivity {
 
     EditText stationName, stationTel, stationAddress1, stationAddress2;
 
-    String id, stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, imageURL;
+    String id, stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime;
     int noOfPumps;
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
@@ -40,20 +40,36 @@ public class UpdateStationUI extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_station_ui);
-
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            id = extras.getString("id");
+            stationNameVal = extras.getString("stationName");
+            stationAddress1Val = extras.getString("address");
+            stationTelVal = extras.getString("telNo");
+            openingTime = extras.getString("timeOpen");
+            closingTime = extras.getString("timeClose");
+            noOfPumps = extras.getInt("noOfPumps");
+        }
 
         btnOpenTime = findViewById(R.id.btn_openTime);
         btnCloseTime = findViewById(R.id.btn_closeTime);
-
         TimeTextView1 = findViewById(R.id.textView_open_time);
         TimeTextView2 = findViewById(R.id.textView_closing_time);
-
         stationName = findViewById(R.id.update_station_name);
         stationTel = findViewById(R.id.update_station_tel);
         stationAddress1 = findViewById(R.id.update_station_address1);
         stationAddress2 = findViewById(R.id.update_station_address2);
-
         updateStation = findViewById(R.id.update_station_btn);
+
+
+        stationName.setText(stationNameVal);
+        stationTel.setText(stationTelVal);
+        stationAddress1.setText(stationAddress1Val);
+        stationAddress2.setText("");
+        TimeTextView1.setText(openingTime);
+        TimeTextView2.setText(closingTime);
+
+
 
         updateStation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,8 +84,8 @@ public class UpdateStationUI extends AppCompatActivity {
                 closingTime = TimeTextView2.getText().toString();
 
                 if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("") && !stationAddress2Val.equals("")
-                        && !TimeTextView1.equals("") && !TimeTextView2.equals("")) {
-                    updateStation(stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime);
+                        && !openingTime.equals("") && !closingTime.equals("")) {
+                    updateStation(id, stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, noOfPumps);
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
                 }
@@ -122,10 +138,19 @@ public class UpdateStationUI extends AppCompatActivity {
         });
     }
 
-    public void updateStation(String stationName, String stationTelNo, String stationAddress1, String stationAddress2, String openingTime, String closingTime) {
+    public void updateStation(String id, String stationName, String stationTelNo, String stationAddress1, String stationAddress2, String openingTime, String closingTime, int noOfPumps) {
 
-        String Address = stationAddress1 +" " + stationAddress2;
-        Station station = new Station(stationName, Address, stationTelNo, openingTime, closingTime, imageURL, noOfPumps);
+        System.out.println(id);
+        System.out.println(stationName);
+        System.out.println(stationTelNo);
+        System.out.println(stationAddress1);
+        System.out.println(stationAddress2);
+        System.out.println(openingTime);
+        System.out.println(closingTime);
+        System.out.println(String.valueOf(noOfPumps));
+
+        String Address = stationAddress1 + " " + stationAddress2;
+        Station station = new Station(id, stationName, Address, stationTelNo, openingTime, closingTime, "", noOfPumps);
         Call<Station> call = jsonPlaceHolderAPI.updateStation(id,station);
         call.enqueue(new Callback<Station>() {
             @Override
