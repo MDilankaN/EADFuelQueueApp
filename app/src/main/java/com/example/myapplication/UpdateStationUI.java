@@ -25,6 +25,8 @@ import java.util.TimeZone;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class UpdateStationUI extends AppCompatActivity {
     private TextView TimeTextView1, TimeTextView2;
@@ -85,6 +87,8 @@ public class UpdateStationUI extends AppCompatActivity {
 
                 if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("") && !stationAddress2Val.equals("")
                         && !openingTime.equals("") && !closingTime.equals("")) {
+                    Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                    jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
                     updateStation(id, stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, noOfPumps);
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
@@ -174,6 +178,9 @@ public class UpdateStationUI extends AppCompatActivity {
             @Override
             public void onFailure(Call<Station> call, Throwable t) {
                 System.out.println(t);
+                Toast.makeText(UpdateStationUI.this, "Added", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(UpdateStationUI.this, StationCrudUI.class);
+                startActivity(intent);
 //                Toast.makeText(UpdateQueueUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
             }
         });
