@@ -1,5 +1,6 @@
 package com.example.myapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,7 +9,14 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.api.JasonPlaceHolderAPI;
+import com.example.myapplication.models.Queue;
+import com.example.myapplication.models.User;
 import com.google.android.material.snackbar.Snackbar;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UpdateStaffUI extends AppCompatActivity {
 
@@ -16,8 +24,8 @@ public class UpdateStaffUI extends AppCompatActivity {
 
     EditText username, password, repassword, email, employeeNo;
 
-    String usernameVal, passwordVal, repasswordVal, emailVal, employeeNoVal;
-
+    String id,usernameVal, passwordVal, repasswordVal, emailVal, employeeNoVal;
+    private JasonPlaceHolderAPI jsonPlaceHolderAPI;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,7 +52,7 @@ public class UpdateStaffUI extends AppCompatActivity {
                         Toast.makeText(UpdateStaffUI.this, "Passwords are not match", Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    updateStaff(usernameVal, emailVal, employeeNoVal, passwordVal);
+                    updateStaff(id, usernameVal, emailVal, employeeNoVal, passwordVal);
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
 
@@ -53,12 +61,37 @@ public class UpdateStaffUI extends AppCompatActivity {
         });
     }
 
-    public void updateStaff(String username, String email, String employeeNo, String password ) {
+    public void updateStaff(String id, String username, String email, String employeeNo, String password ) {
 
-        System.out.println(username);
-        System.out.println(email);
-        System.out.println(employeeNo);
-        System.out.println(password);
+        User user = new User(id, username, email, employeeNo, password);
+        Call<User> call = jsonPlaceHolderAPI.updateUser(id,user);
+        call.enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(UpdateStaffUI.this, "Update unsuccessful", Toast.LENGTH_LONG).show();
+                    System.out.println(response);
+                    return;
+                }
+
+                User user = (User) response.body();
+                System.out.println("user");
+                System.out.println(user.getId());
+                System.out.println(user.getUserName());
+                System.out.println(user.getEmail());
+                System.out.println(user.getType());
+
+                Toast.makeText(UpdateStaffUI.this, "Added", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(UpdateStaffUI.this, QueueCrudUI.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                System.out.println(t);
+//                Toast.makeText(UpdateQueueUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 

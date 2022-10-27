@@ -47,6 +47,10 @@ public class StaffCrudUI  extends AppCompatActivity {
         search = findViewById(R.id.staffField);
         result = findViewById(R.id.result);
 
+        result_box.setVisibility(View.GONE);
+        updateStaffBtn.setVisibility(View.GONE);
+        removeStaffBtn.setVisibility(View.GONE);
+
         searchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,6 +79,11 @@ public class StaffCrudUI  extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(StaffCrudUI.this, UpdateStaffUI.class);
+                intent.putExtra("id", id);
+                intent.putExtra("userName", username);
+                intent.putExtra("userEmail", email);
+                intent.putExtra("userEmpNo", empNo);
+                intent.putExtra("userPassword", password);
                 startActivity(intent);
             }
         });
