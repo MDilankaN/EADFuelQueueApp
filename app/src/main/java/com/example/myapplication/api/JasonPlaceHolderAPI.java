@@ -36,12 +36,12 @@ public interface JasonPlaceHolderAPI {
     @POST("/api/Station")
     Call<Station>createStation(@Body Station station);
 
-//    //get by station name
-//    @GET("/api/Station/GetStationByName/{stationName}")
-//    Call<List<Station>>getStationByName(@Path("stationName") String stationName);
+    //get by station name
+    @GET("/api/Station/GetStationByName/{stationName}")
+    Call<List<Station>>getStationByName(@Path("stationName") String stationName);
 
     @GET("/api/Station/GetStationByName/{stationName}")
-    Call<Station> getStationByName(@Path("stationName") String stationName);
+    Call<Station> getStationByName2(@Path("stationName") String stationName);
 
     @PUT("/api/Station/{id}")
     Call<Station>updateStation(@Path("id") String id, @Body Station station);

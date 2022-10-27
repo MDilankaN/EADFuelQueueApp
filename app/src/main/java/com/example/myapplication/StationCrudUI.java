@@ -144,7 +144,7 @@ public class StationCrudUI extends AppCompatActivity {
     public void searchStation(String searchValue) {
 
         System.out.println(searchValue);
-        Call<Station> call = jsonPlaceHolderAPI.getStationByName(searchValue);
+        Call<Station> call = jsonPlaceHolderAPI.getStationByName2(searchValue);
         call.enqueue(new Callback<Station>() {
             @Override
             public void onResponse(Call<Station> call, Response<Station> response) {
