@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".StaffCrudUI">
+    tools:context=".StationPageUI">
 
     <ScrollView
         android:id="@+id/scrollView3"
@@ -57,11 +57,12 @@
                 tools:ignore="RtlCompat">
 
                 <TextView
+                    android:id="@+id/result"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:fontFamily="@font/raleway_medium"
                     android:gravity="center"
-                    android:text="Queue Position: 9"
+                    android:text="Queue Position: "
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textFontWeight="700"
