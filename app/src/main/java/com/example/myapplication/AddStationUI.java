@@ -164,7 +164,7 @@ public class AddStationUI extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(AddStationUI.this, "Successfully registered", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddStationUI.this, "Data added successfully", Toast.LENGTH_LONG).show();
                 Station stationRes = response.body();
                 System.out.println("stationRes");
                 System.out.println(stationRes.getStationName());

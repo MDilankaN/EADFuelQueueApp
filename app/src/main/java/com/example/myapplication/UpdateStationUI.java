@@ -2,7 +2,6 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,7 +13,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.myapplication.api.JasonPlaceHolderAPI;
-import com.example.myapplication.models.Queue;
 import com.example.myapplication.models.Station;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -32,9 +30,9 @@ public class UpdateStationUI extends AppCompatActivity {
     private TextView TimeTextView1, TimeTextView2;
     private Button updateStation, btnOpenTime, btnCloseTime;
 
-    EditText stationName, stationTel, stationAddress1, stationAddress2;
+    EditText stationName, stationTel, stationAddress1;
 
-    String id, stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime;
+    String id, stationNameVal, stationTelVal, stationAddress1Val,openingTime, closingTime;
     int noOfPumps;
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
 
@@ -60,14 +58,14 @@ public class UpdateStationUI extends AppCompatActivity {
         stationName = findViewById(R.id.update_station_name);
         stationTel = findViewById(R.id.update_station_tel);
         stationAddress1 = findViewById(R.id.update_station_address1);
-        stationAddress2 = findViewById(R.id.update_station_address2);
+//        stationAddress2 = findViewById(R.id.update_station_address2);
         updateStation = findViewById(R.id.update_station_btn);
 
 
         stationName.setText(stationNameVal);
         stationTel.setText(stationTelVal);
         stationAddress1.setText(stationAddress1Val);
-        stationAddress2.setText("");
+//        stationAddress2.setText("");
         TimeTextView1.setText(openingTime);
         TimeTextView2.setText(closingTime);
 
@@ -80,16 +78,16 @@ public class UpdateStationUI extends AppCompatActivity {
                 stationNameVal = stationName.getText().toString();
                 stationTelVal = stationTel.getText().toString();
                 stationAddress1Val = stationAddress1.getText().toString();
-                stationAddress2Val = stationAddress2.getText().toString();
+//                stationAddress2Val = stationAddress2.getText().toString();
 
                 openingTime = TimeTextView1.getText().toString();
                 closingTime = TimeTextView2.getText().toString();
 
-                if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("") && !stationAddress2Val.equals("")
+                if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("")
                         && !openingTime.equals("") && !closingTime.equals("")) {
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
                     jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
-                    updateStation(id, stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, noOfPumps);
+                    updateStation(id, stationNameVal, stationTelVal, stationAddress1Val, openingTime, closingTime, noOfPumps);
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
                 }
@@ -142,19 +140,19 @@ public class UpdateStationUI extends AppCompatActivity {
         });
     }
 
-    public void updateStation(String id, String stationName, String stationTelNo, String stationAddress1, String stationAddress2, String openingTime, String closingTime, int noOfPumps) {
+    public void updateStation(String id, String stationName, String stationTelNo, String stationAddress, String openingTime, String closingTime, int noOfPumps) {
 
         System.out.println(id);
         System.out.println(stationName);
         System.out.println(stationTelNo);
         System.out.println(stationAddress1);
-        System.out.println(stationAddress2);
+//        System.out.println(stationAddress2);
         System.out.println(openingTime);
-        System.out.println(closingTime);
+        System.out.println(this.closingTime);
         System.out.println(String.valueOf(noOfPumps));
 
-        String Address = stationAddress1 + " " + stationAddress2;
-        Station station = new Station(id, stationName, Address, stationTelNo, openingTime, closingTime, "", noOfPumps);
+//        String Address = stationAddress1 + " " + stationAddress2;
+        Station station = new Station(id, stationName, stationAddress, stationTelNo, openingTime, this.closingTime, "", noOfPumps);
         Call<Station> call = jsonPlaceHolderAPI.updateStation(id,station);
         call.enqueue(new Callback<Station>() {
             @Override
@@ -170,7 +168,7 @@ public class UpdateStationUI extends AppCompatActivity {
                 System.out.println(station.getTelephone());
                 System.out.println(station.getAddress());
 
-                Toast.makeText(UpdateStationUI.this, "Added", Toast.LENGTH_LONG).show();
+                Toast.makeText(UpdateStationUI.this, "Updated", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(UpdateStationUI.this, StationCrudUI.class);
                 startActivity(intent);
             }
