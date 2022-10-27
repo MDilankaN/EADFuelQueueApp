@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,8 +36,10 @@ public class StationPageUI extends AppCompatActivity {
     String  id, stationName, address, telephone, openTime, closeTime, imageURL, queue_list_id;
     int noOfPumps;
 
-    TextView stationNameView, addressView, openingTimeView, telNoView;
+    TextView stationNameView, addressView, openingTimeView, telNoView, result;
+    LinearLayout resultBox;
 
+    String noOfUsersInQueue;
 
     Button joinQueue, exitBeforeBtn, exitAfterBtn;
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
@@ -70,12 +73,15 @@ public class StationPageUI extends AppCompatActivity {
         exitAfterBtn = findViewById(R.id.btn_exit_after);
 
         ListItem = findViewById(R.id.list_itemname);
+        resultBox = findViewById(R.id.searchResultBox);
+        result = findViewById(R.id.result);
 
         stationNameView.setText(stationName);
         addressView.setText(address);
         telNoView.setText(telephone);
         openingTimeView.setText("Opens at " + openTime);
 
+        resultBox.setVisibility(View.GONE);
         exitBeforeBtn.setVisibility(View.GONE);
         exitAfterBtn.setVisibility(View.GONE);
 
@@ -89,8 +95,8 @@ public class StationPageUI extends AppCompatActivity {
 
             public void onClick(View view) {
                 Date currentTime = Calendar.getInstance().getTime();
-                joinList("11", "11", currentTime.toString(), "11", "1");
-                GetListInQueue("11");
+                joinList("11", queue_list_id, currentTime.toString(), "", noOfUsersInQueue);
+                GetListInQueue(queue_list_id);
             }
         });
 
@@ -120,6 +126,9 @@ public class StationPageUI extends AppCompatActivity {
                 }
 
                 List<QueueList> queueList = response.body();
+                noOfUsersInQueue = String.valueOf(queueList.size() + 1);
+                result.setText("Queue Position: " + noOfUsersInQueue);
+
 
                 for (QueueList queueListI : queueList) {
                     String content = "ID: " + queueListI.getId() + "\n" + "User ID: " + queueListI.getUserID() + "\n" + "Joined Time: " + queueListI.getJoinTime() + "\n\n\n";
@@ -168,6 +177,8 @@ public class StationPageUI extends AppCompatActivity {
 
                 Toast.makeText(StationPageUI.this, "Successfully registered", Toast.LENGTH_LONG).show();
                 QueueList joinres = response.body();
+                resultBox.setVisibility(View.VISIBLE);
+
                 CurrentUser = joinres;
                 System.out.println("joinres");
                 System.out.println(joinres.getId());
