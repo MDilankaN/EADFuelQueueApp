@@ -34,7 +34,7 @@ public class AddStationUI extends AppCompatActivity {
     private Button addStation, btnOpenTime, btnCloseTime;
     String ImageURL = "";
 
-    EditText stationName, stationTel, stationAddress1, stationAddress2, noOfPumps;
+    EditText stationName, stationTel, stationAddress1, noOfPumps;
 
     String stationNameVal, stationTelVal, stationAddress1Val, stationAddress2Val, openingTime, closingTime, imgVal;
     Integer no_of_pumps;
@@ -55,7 +55,6 @@ public class AddStationUI extends AppCompatActivity {
         stationName = findViewById(R.id.station_name);
         stationTel = findViewById(R.id.station_tel);
         stationAddress1 = findViewById(R.id.station_address1);
-        stationAddress2 = findViewById(R.id.station_address2);
         noOfPumps = findViewById(R.id.station_noOfPumps);
 
         addStation = findViewById(R.id.add_station_btn);
@@ -67,24 +66,23 @@ public class AddStationUI extends AppCompatActivity {
                 stationNameVal = stationName.getText().toString();
                 stationTelVal = stationTel.getText().toString();
                 stationAddress1Val = stationAddress1.getText().toString();
-                stationAddress2Val = stationAddress2.getText().toString();
 
                 openingTime = TimeTextView1.getText().toString();
                 closingTime = TimeTextView2.getText().toString();
 
-                no_of_pumps = Integer.valueOf(noOfPumps.getText().toString());
+                no_of_pumps = Integer.parseInt(noOfPumps.getText().toString().trim());
                 imgVal = ImageURL.toString();
 
 
 
-                if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("") && !stationAddress2Val.equals("")
+                if (!stationNameVal.equals("") && !stationTelVal.equals("") && !stationAddress1Val.equals("")
                         && !TimeTextView1.equals("") && !TimeTextView2.equals("")) {
-                    addStation(stationNameVal, stationAddress1Val, stationAddress2Val, stationTelVal, openingTime, closingTime, imgVal, no_of_pumps);
+                    addStation(stationNameVal, stationAddress1Val, stationTelVal, openingTime, closingTime, imgVal, no_of_pumps);
 
                     //add data
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
                     jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
-                    addStation(stationName.toString(), stationAddress1.toString(), stationAddress2.toString(), stationTel.toString(), TimeTextView1.toString(), TimeTextView2.toString(), ImageURL, 5);
+                    addStation(stationName.toString(), stationAddress1.toString(), stationTel.toString(), TimeTextView1.toString(), TimeTextView2.toString(), ImageURL, 5);
                     addStation.setText("Loading...");
                 } else {
                     Snackbar.make(v, "Fields are Empty", Snackbar.LENGTH_SHORT).show();
@@ -143,19 +141,20 @@ public class AddStationUI extends AppCompatActivity {
 
     }
 
-    public void addStation(String stationName, String stationAddress1, String stationAddress2, String stationTelNo, String openingTime, String closingTime, String imageURL, int noOfPumps){
+    public void addStation(String stationName, String stationAddress1, String stationTelNo, String openingTime, String closingTime, String imageURL, int noOfPumps){
 
-        String Address = stationAddress1 +" " + stationAddress2;
-        Station station = new Station(stationName, Address, stationTelNo, openingTime, closingTime, imageURL, noOfPumps);
+        Station station = new Station(stationName, stationAddress1, stationTelNo, "lll", "lll", imageURL, noOfPumps);
 
-        Call<Station> call = jsonPlaceHolderAPI.createStation(station);
 
         System.out.println(stationName);
         System.out.println(stationTelNo);
         System.out.println(stationAddress1);
-        System.out.println(stationAddress2);
         System.out.println(openingTime);
         System.out.println(closingTime);
+
+        Call<Station> call = jsonPlaceHolderAPI.createStation(station);
+
+
 
         call.enqueue(new Callback<Station>() {
             @Override
