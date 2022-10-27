@@ -49,7 +49,6 @@ public class SearchFuelStation extends AppCompatActivity {
         result_box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println(id);
                 Intent intent = new Intent(SearchFuelStation.this, QueueListByStationUI.class);
                 intent.putExtra("id", id);
                 intent.putExtra("stationName", stationName);
@@ -89,37 +88,35 @@ public class SearchFuelStation extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Station>> call, Response<List<Station>> response) {
                 if (!response.isSuccessful()) {
-                    Toast.makeText(SearchFuelStation.this, "Not Found", Toast.LENGTH_LONG).show();
+                    Toast.makeText(SearchFuelStation.this, "Not Found", Toast.LENGTH_SHORT).show();
                     System.out.println(response);
-
                     return;
                 }
-
-                result_box.setVisibility(View.VISIBLE);
-
                 List<Station> station = response.body();
 
-                for (Station st : station){
-                    id = st.getId();
-                    stationName = st.getStationName();
-                    address = st.getAddress();
-                    telephone = st.getTelephone();
-                    openTime = st.getOpenTime();
-                    closeTime = st.getCloseTime();
-                    imageURL = st.getImageURL();
-                    noOfPumps = st.getNoOfPumps();
-
-                    String content = "";
-                    result.setText(content);
-                    content += "Station Name: " + st.getStationName() + "\n";
-                    content += "Address: " + st.getAddress() + "\n";
-                    content += "Opens between (" + st.getOpenTime() + " - " + st.getCloseTime() + ")";
-
-                    result.append(content);
+                if(station.size() != 0){
+                    result_box.setVisibility(View.VISIBLE);
+                    for (Station st : station){
+                        id = st.getId();
+                        stationName = st.getStationName();
+                        address = st.getAddress();
+                        telephone = st.getTelephone();
+                        openTime = st.getOpenTime();
+                        closeTime = st.getCloseTime();
+                        imageURL = st.getImageURL();
+                        noOfPumps = st.getNoOfPumps();
+                        String content = "";
+                        result.setText(content);
+                        content += "Station Name: " + st.getStationName() + "\n";
+                        content += "Address: " + st.getAddress() + "\n";
+                        content += "Opens between (" + st.getOpenTime() + " - " + st.getCloseTime() + ")";
+                        result.append(content);
+                    }
+                    Toast.makeText(SearchFuelStation.this, "Result Found", Toast.LENGTH_SHORT).show();
                 }
-
-                Toast.makeText(SearchFuelStation.this, "Result Found", Toast.LENGTH_LONG).show();
-
+                if(station.size() == 0){
+                    Toast.makeText(SearchFuelStation.this, "Station does not exist", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override
