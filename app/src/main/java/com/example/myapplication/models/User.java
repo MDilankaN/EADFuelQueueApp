@@ -82,4 +82,12 @@ public class User {
         Language = language;
         Type = type;
     }
+
+    public User(String id, String userName, String email, String password, String vehicleNo) {
+        Id = id;
+        UserName = userName;
+        Email = email;
+        Password = password;
+        VehicleNo = vehicleNo;
+    }
 }

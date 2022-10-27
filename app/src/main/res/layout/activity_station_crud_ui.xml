@@ -100,11 +100,12 @@
             <LinearLayout
                 android:id="@+id/searchResultBox"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="wrap_content"
                 android:gravity="left"
                 android:orientation="horizontal"
                 android:background="@color/cream"
                 android:paddingHorizontal="20dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:paddingVertical="20dp"
                 android:textAlignment="textStart"
@@ -112,15 +113,15 @@
 
                 <TextView
                     android:id="@+id/result"
-                    android:text="Not Found"
+                    android:text=""
                     android:textColor="@color/white"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:gravity="center"
                     android:fontFamily="@font/raleway_medium"
                     android:textFontWeight="700"
                     android:textAlignment="textStart"
-                    android:textSize="20dp"/>
+                    android:textSize="18sp"/>
 
             </LinearLayout>
 

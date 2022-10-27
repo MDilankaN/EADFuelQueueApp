@@ -77,7 +77,7 @@ public class ContactUsUI extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(ContactUsUI.this, "Successfully registered", Toast.LENGTH_LONG).show();
+                Toast.makeText(ContactUsUI.this, "Data added successfully", Toast.LENGTH_LONG).show();
                 ContactUs contactUsRes = response.body();
                 System.out.println(contactUsRes.getEmail());
                 System.out.println(contactUsRes.getName());

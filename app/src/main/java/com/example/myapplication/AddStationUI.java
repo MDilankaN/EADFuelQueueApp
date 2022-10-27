@@ -164,13 +164,15 @@ public class AddStationUI extends AppCompatActivity {
                     return;
                 }
 
-                Toast.makeText(AddStationUI.this, "Successfully registered", Toast.LENGTH_LONG).show();
+                Toast.makeText(AddStationUI.this, "Data added successfully", Toast.LENGTH_LONG).show();
                 Station stationRes = response.body();
                 System.out.println("stationRes");
                 System.out.println(stationRes.getStationName());
                 System.out.println(stationRes.getAddress());
                 System.out.println(stationRes.getOpenTime());
                 System.out.println(stationRes.getCloseTime());
+                Intent intent = new Intent(AddStationUI.this, StationCrudUI.class);
+                startActivity(intent);
             }
 
             @Override
