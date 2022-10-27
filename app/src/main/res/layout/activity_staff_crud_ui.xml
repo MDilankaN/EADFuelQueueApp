@@ -6,7 +6,7 @@
     android:background="@color/white"
     tools:context=".StaffCrudUI">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -131,15 +131,16 @@
                     android:gravity="center">
 
                     <TextView
-                        android:text="No staffs found"
-                        android:textColor="@color/white"
+                        android:id="@+id/result"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
                         android:fontFamily="@font/raleway_medium"
-                        android:textFontWeight="700"
+                        android:gravity="center"
+                        android:text="No staffs found"
                         android:textAlignment="textStart"
-                        android:textSize="22sp"/>
+                        android:textColor="@color/white"
+                        android:textFontWeight="700"
+                        android:textSize="22sp" />
 
                 </LinearLayout>
 
