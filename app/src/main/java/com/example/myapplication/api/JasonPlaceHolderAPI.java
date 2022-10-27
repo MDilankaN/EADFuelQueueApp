@@ -29,6 +29,9 @@ public interface JasonPlaceHolderAPI {
     @PUT("/api/User/{id}")
     Call<User>updateUser(@Path("id") String id ,@Body User user);
 
+    @DELETE("/api/User/{id}")
+    Call<Void>deleteUser(@Path("id") String id);
+
     //station
     @GET("/api/Station")
     Call<List<Station>> getStations();

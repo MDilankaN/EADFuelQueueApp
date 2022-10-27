@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.api.JasonPlaceHolderAPI;
@@ -80,12 +82,46 @@ public class StaffCrudUI  extends AppCompatActivity {
         removeStaffBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                new AlertDialog.Builder(StaffCrudUI.this)
+                        .setTitle("Remove this staff")
+                        .setMessage("Do you want to remove?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                                jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+                                removeStaff();
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
             }
         });
     }
-    public void searchStaff(String searchValue) {
 
+    public void removeStaff(){
+        Call<Void> call = jsonPlaceHolderAPI.deleteUser(id);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(StaffCrudUI.this, "Failed", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(StaffCrudUI.this, "Removed", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(StaffCrudUI.this, QueueCrudUI.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println(t);
+                Toast.makeText(StaffCrudUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    public void searchStaff(String searchValue) {
         System.out.println(searchValue);
         Call<User> call = jsonPlaceHolderAPI.getUserByID(searchValue);
         call.enqueue(new Callback<User>() {
