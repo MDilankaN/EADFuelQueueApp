@@ -48,7 +48,6 @@ public class ContactUsUI extends AppCompatActivity {
                 messageVal = message.getText().toString();
 
                 if (!nameVal.equals("") && !emailVal.equals("") && !subjectVal.equals("")  && !messageVal.equals("")) {
-                    sendMsg(nameVal, emailVal, subjectVal, messageVal);
 
                     //add data
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
