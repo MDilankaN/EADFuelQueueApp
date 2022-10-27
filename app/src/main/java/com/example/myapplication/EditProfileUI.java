@@ -1,6 +1,7 @@
 package com.example.myapplication;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.api.JasonPlaceHolderAPI;
@@ -31,6 +33,8 @@ public class EditProfileUI extends AppCompatActivity {
 
     String usernameVal, emailVal, vehicleNoVal, vehicleTypeVal, fuelTypeval;
     private JasonPlaceHolderAPI jsonPlaceHolderAPI;
+
+    String id;
 
     String usernameParam;
     DBHandler dbHandler;
@@ -59,6 +63,7 @@ public class EditProfileUI extends AppCompatActivity {
         vehicleType = findViewById(R.id.vehicle_type);
         fuelType = findViewById(R.id.fuel_type);
 
+        id = userData.getId();
         username.setText(userData.getUserName());
         email.setText(userData.getEmail());
         vehicleNo.setText(userData.getVehicleNo());
@@ -89,11 +94,52 @@ public class EditProfileUI extends AppCompatActivity {
             }
         });
 
+        deleteMyAccountBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new AlertDialog.Builder(EditProfileUI.this)
+                        .setTitle("Remove Account")
+                        .setMessage("Do you want to remove?")
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
+                                jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+                                removeUser(id);
+                            }
+                        })
+                        .setNegativeButton("No", null)
+                        .show();
+            }
+        });
+
         changePasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent =  new Intent(EditProfileUI.this, ChangePasswordUI.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    public void removeUser(String userId){
+        Call<Void> call = jsonPlaceHolderAPI.deleteUser(userId);
+        call.enqueue(new Callback<Void>() {
+            @Override
+            public void onResponse(Call<Void> call, Response<Void> response) {
+                if (!response.isSuccessful()) {
+                    Toast.makeText(EditProfileUI.this, "Failed", Toast.LENGTH_LONG).show();
+                    return;
+                }
+
+                Toast.makeText(EditProfileUI.this, "Removed", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(EditProfileUI.this, LoginUI.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void onFailure(Call<Void> call, Throwable t) {
+                System.out.println(t);
+                Toast.makeText(EditProfileUI.this, "Error: Failed", Toast.LENGTH_LONG).show();
             }
         });
     }
