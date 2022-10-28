@@ -87,7 +87,7 @@ public class LoginUI extends AppCompatActivity {
     private void getUserLogin(String un) {
         System.out.println(un);
         System.out.println("-------------------------");
-        Call<User> call = jsonPlaceHolderAPI.getUserByID(un);
+        Call<User> call = jsonPlaceHolderAPI.getUserByID(un.trim());
         call.enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -96,13 +96,18 @@ public class LoginUI extends AppCompatActivity {
                     return;
                 }
 
-                User user = (User) response.body();
+                User user = response.body();
 
                dbHandler.addUserToDB(user);
+
+               System.out.println(user.getType());
 
                 Toast.makeText(LoginUI.this, "Logged In", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(LoginUI.this, HomeUI.class);
                 intent.putExtra("username", user.getUserName());
+                intent.putExtra("type", user.getType());
+                System.out.println(user.getType());
+                System.out.println("user.getType()");
                 startActivity(intent);
 
             }

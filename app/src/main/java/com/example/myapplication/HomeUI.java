@@ -15,7 +15,7 @@ public class HomeUI extends AppCompatActivity {
     BottomNavigationView bottomNavigationView;
     HomeFragment homeFragment = new HomeFragment();
     SettingsFragment settingsFragment = new SettingsFragment();
-    String username;
+    String username, type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +24,11 @@ public class HomeUI extends AppCompatActivity {
         Bundle bundel = new Bundle();
         if (extras != null) {
             username = extras.getString("username");
+            type = extras.getString("type");
             bundel.putString("username", username);
+            bundel.putString("type", type);
+            System.out.println("xsdddsssssssssssss");
+            System.out.println(type);
         }
         setContentView(R.layout.activity_home_ui);
 

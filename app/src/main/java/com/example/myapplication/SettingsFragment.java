@@ -62,18 +62,12 @@ public class SettingsFragment extends Fragment {
     }
 
     Button Profile, Station, Staff, Queue, ContactUs, Privacy;
-    String username;
+    String username,type;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_settings, container, false);
-
-        if(getArguments() != null){
-            username = getArguments().getString("username");
-            System.out.println(username);
-
-        }
 
 
         Profile = view.findViewById(R.id.profile_btn);
@@ -82,6 +76,29 @@ public class SettingsFragment extends Fragment {
         Queue = view.findViewById(R.id.queue_btn);
         ContactUs = view.findViewById(R.id.contact_us_btn);
         Privacy = view.findViewById(R.id.policy_btn);
+
+
+        if(getArguments() != null){
+            username = getArguments().getString("username");
+            type = getArguments().getString("type");
+
+            if(type.matches("user")){
+                Station.setVisibility(View.GONE);
+                Staff.setVisibility(View.GONE);
+                Queue.setVisibility(View.GONE);
+            } else if(type.matches("staff")){
+                Station.setVisibility(View.GONE);
+                Staff.setVisibility(View.GONE);
+            }
+            System.out.println(username);
+            System.out.println(type);
+
+        }
+
+
+
+
+
 
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override
