@@ -89,16 +89,16 @@ public class SettingsFragment extends Fragment {
             } else if(type.matches("staff")){
                 Station.setVisibility(View.GONE);
                 Staff.setVisibility(View.GONE);
+            } else {
+                Station.setVisibility(View.VISIBLE);
+                Staff.setVisibility(View.VISIBLE);
+                Queue.setVisibility(View.VISIBLE);
+                Profile.setVisibility(View.VISIBLE);
             }
             System.out.println(username);
             System.out.println(type);
 
         }
-
-
-
-
-
 
         Profile.setOnClickListener(new View.OnClickListener() {
             @Override

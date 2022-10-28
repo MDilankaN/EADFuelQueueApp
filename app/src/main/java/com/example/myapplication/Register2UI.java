@@ -73,8 +73,9 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
                 if (!fuelType.equals("") && !vehicleType.equals("") && !language.equals("")) {
                     Retrofit retrofit = new Retrofit.Builder().baseUrl("https://ead-backend-fuel-queue.herokuapp.com").addConverterFactory(GsonConverterFactory.create()).build();
                     jsonPlaceHolderAPI = retrofit.create(JasonPlaceHolderAPI.class);
+                    RegisterBtn.setText("Loading..");
                     registerUser(username, email, password, vehicleNo, fuelType, vehicleType, language, "user");
-                    RegisterBtn.setText("Done");
+
                 }
             }
         });
@@ -147,6 +148,7 @@ public class Register2UI extends AppCompatActivity implements AdapterView.OnItem
                 System.out.println(userRes.getLanguage());
                 System.out.println(userRes.getVehicleNo());
                 System.out.println(userRes.getVehicleType());
+                RegisterBtn.setText("Done");
                 Intent intent = new Intent(Register2UI.this, LoginUI.class);
                 Toast.makeText(Register2UI.this, "Registered Successfully", Toast.LENGTH_LONG).show();
                 intent.putExtra("username", userRes.getUserName());

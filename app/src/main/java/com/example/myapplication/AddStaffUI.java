@@ -54,7 +54,7 @@ public class AddStaffUI extends AppCompatActivity {
                         Toast.makeText(AddStaffUI.this, "Passwords do not match", Toast.LENGTH_LONG).show();
                         return;
                     }
-                    addStafftoSystem(un, email, pwd, empNo, "", "", "EN", "Staff");
+                    addStafftoSystem(un, email, pwd, empNo, "", "", "EN", "staff");
                 } else {
                     Toast.makeText(AddStaffUI.this, "Fields are empty", Toast.LENGTH_LONG).show();
                 }
